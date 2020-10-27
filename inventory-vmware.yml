@@ -1,0 +1,9 @@
+all:
+  hosts:
+    test.example.com:
+  children:
+    virtualDataCenter:
+      hosts:
+        bigipA.example.com:
+
+
