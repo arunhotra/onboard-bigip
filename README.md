@@ -13,7 +13,6 @@ Docker
 
 * ### clone the repo
 
-* ### modify hosts file to point to the IP of your BIG-IP
 
 * ### build and run the container
 
