@@ -5,5 +5,5 @@ all:
     virtualDataCenter:
       hosts:
         bigipA.example.com:
-
+        bigipB.example.com:
 
