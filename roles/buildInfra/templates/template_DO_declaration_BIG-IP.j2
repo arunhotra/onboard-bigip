@@ -234,6 +234,34 @@
         "failoverAddress": {
             "class": "FailoverUnicast",
             "address": "/Common/{{device_vars.base.haIp.name}}/address"
+        },
+        "failoverGroup": {
+            "class": "DeviceGroup",
+            "type": "sync-failover",
+            "members": [
+                {% if device_vars.base.haPeer.primary == true  %}
+                "{{device_vars.base.haIp.ip}}",
+                "{{device_vars.base.haPeer.haIp}}"
+                {% else %}
+                "{{device_vars.base.haPeer.haIp}}",
+                "{{device_vars.base.haIp.ip}}"
+                {% endif %}
+            ],
+            "owner": "/Common/failoverGroup/members/0",
+            "autoSync": true,
+            "saveOnAutoSync": false,
+            "networkFailover": true,
+            "fullLoadOnSync": false,
+            "asmSync": false
+        },
+        "myDeviceTrust": {
+            "class": "DeviceTrust",
+            "localPassword": "{{bigip_password}}",
+            "localUsername": "{{bigip_username}}",
+            "remoteHost": "/Common/failoverGroup/members/0",
+            "remotePassword": "{{bigip_password}}",
+            "remoteUsername":"{{bigip_username}}"
         }
+
     }
 }
