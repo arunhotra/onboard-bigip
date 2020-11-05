@@ -1,0 +1,45 @@
+
+
+
+- import_tasks: build_provider.yaml
+  tags:
+    - buildInfra
+
+
+
+- import_tasks: bigip_deviceIntentData_remove.yaml
+  tags:
+    - buildInfra
+
+- import_tasks: bigip_deviceIntentData_get.yaml
+  tags:
+    - buildInfra
+
+- import_tasks: bigip_deviceIntentData_remove.yaml
+  tags:
+    - buildInfra
+
+- import_tasks: bigip_wait.yaml
+  tags:
+    - buildInfra
+
+- import_tasks: bigip_do_rpms.yaml
+  tags:
+    - buildInfra
+
+- import_tasks: bigip_wait.yaml
+  tags:
+    - buildInfra
+
+- import_tasks: bigip_declarativeOnboarding.yaml
+  tags:
+    - buildInfra
+
+# - import_tasks: bigip_nonDO_configs.yaml
+#   tags:
+#     - buildInfra
+
+# - import_tasks: bigip_configure_bgp.yaml
+#   tags:
+#     - buildInfra
+
