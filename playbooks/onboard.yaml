@@ -1,0 +1,11 @@
+---
+
+- name: BIG IP Pair onboarding
+  hosts: virtualDataCenter
+  connection: local
+  gather_facts: no
+
+    
+  roles:
+    # - buildInfra
+    - buildApp

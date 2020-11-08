@@ -4,7 +4,7 @@
   - name: Print rendered DO declaration
     debug:
       msg: "{\"DO_declaration\": {{ lookup('template','{{ role_path }}/templates/template_DO_declaration_BIG-IP.j2') }}}"
-    with_dict: "{{device_vars}}"
+    # with_dict: "{{device_vars}}"
 
 
   - name: "REST call DO declaration to BIG-IPs"
@@ -22,7 +22,7 @@
       force_basic_auth: yes
       validate_certs: no
     register: DO_output
-    with_dict: "{{device_vars}}"
+    # with_dict: "{{device_vars}}"
 
 
 
@@ -37,7 +37,7 @@
       timeout: 600
       delay: 30
       provider: "{{ provider }}"
-    with_dict: "{{device_vars}}"
+    # with_dict: "{{device_vars}}"
 
 
   - name: "REST to check for Successfull DO Declaration to both BIG-IPs"

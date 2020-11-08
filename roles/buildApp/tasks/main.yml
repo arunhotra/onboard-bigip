@@ -3,43 +3,39 @@
 
 - import_tasks: build_provider.yaml
   tags:
-    - buildInfra
+    - buildApp
 
-
-
-- import_tasks: bigip_deviceIntentData_remove.yaml
+- import_tasks: populate_status.yaml
   tags:
-    - buildInfra
+    - buildApp
 
-- import_tasks: bigip_deviceIntentData_get.yaml
-  tags:
-    - buildInfra
 
-- import_tasks: bigip_deviceIntentData_remove.yaml
+- import_tasks: bigip_appIntentData_remove.yaml
   tags:
-    - buildInfra
+    - buildApp
+
+- import_tasks: bigip_appIntentData_get.yaml
+  tags:
+    - buildApp
+
+- import_tasks: bigip_appIntentData_remove.yaml
+  tags:
+    - buildApp
 
 - import_tasks: bigip_wait.yaml
   tags:
-    - buildInfra
+    - buildApp
 
-- import_tasks: bigip_do_rpms.yaml
+- import_tasks: bigip_as3_rpms.yaml
   tags:
-    - buildInfra
+    - buildApp
 
 - import_tasks: bigip_wait.yaml
   tags:
-    - buildInfra
+    - buildApp
 
-- import_tasks: bigip_declarativeOnboarding.yaml
+- import_tasks: bigip_as3Onboarding.yaml
+  when: active_host == True
   tags:
-    - buildInfra
-
-# - import_tasks: bigip_nonDO_configs.yaml
-#   tags:
-#     - buildInfra
-
-# - import_tasks: bigip_configure_bgp.yaml
-#   tags:
-#     - buildInfra
+    - buildApp
 
