@@ -2,16 +2,6 @@ FROM alpine:3.10
 
 ENV ANSIBLE_VERSION=2.9.12
 
-LABEL org.opencontainers.image.authors=$BUILD_SIGNATURE \
-    org.opencontainers.image.source="https://github.com/arunhotra/onboard-bigip" \
-    org.opencontainers.image.created=$BUILD_DATE \
-    org.opencontainers.image.build_number=$BUILD_NUMBER \
-    org.opencontainers.image.commit=$GIT_COMMIT \
-    org.opencontainers.image.title="arunhotra/onboard-bigip" \
-    org.opencontainers.image.description="This repo does the DO and AS3 provisioning and uses a dynamically built inventory (by vRA - but it could be from AWS or any other cloud as well )" \
-    org.opencontainers.image.version=$BUILD_VERSION \
-    org.zdocker.compose=$COMPOSE 
-
 RUN set -xe \
     && echo "****** Install system dependencies ******" \
     && apk add --no-cache --progress python3 openssl \
@@ -25,12 +15,6 @@ RUN set -xe \
     && echo "****** Remove unused system librabies ******" \
     && apk del build-dependencies \
     && rm -rf /var/cache/apk/* 
-
-RUN set -xe \
-    && mkdir -p /etc/ansible \
-    && echo -e "[local]\nlocalhost ansible_connection=local" > \
-    /etc/ansible/hosts
-
 
 COPY . /ansible
 

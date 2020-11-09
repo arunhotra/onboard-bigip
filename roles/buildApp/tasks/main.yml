@@ -9,8 +9,7 @@
   tags:
     - buildApp
 
-
-- import_tasks: bigip_appIntentData_remove.yaml
+- import_tasks: cleanup_temp_directories.yaml
   tags:
     - buildApp
 

@@ -1,0 +1,11 @@
+---
+
+- name: BIG IP App onboarding
+  hosts: virtualDataCenter
+  connection: local
+  gather_facts: no
+
+    
+  roles:
+    - buildApp
+

@@ -7,7 +7,7 @@
 
 
 
-- import_tasks: bigip_deviceIntentData_remove.yaml
+- import_tasks: cleanup_temp_directories.yaml
   tags:
     - buildInfra
 

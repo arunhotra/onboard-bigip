@@ -1,0 +1,13 @@
+---
+
+- name: BIG IP App Delete
+  hosts: virtualDataCenter
+  connection: local
+  gather_facts: no
+
+  collections:
+    - f5networks.f5_modules
+  
+  roles:
+    - deleteApp
+

@@ -8,5 +8,4 @@
         password: "{{bigip_password}}"
         server_port: "{{bigip_port}}"
         validate_certs: "{{validate_certs}}"
-    tags:
-      - buildInfra
+        no_f5_teem: yes

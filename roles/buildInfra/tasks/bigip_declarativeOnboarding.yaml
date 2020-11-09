@@ -5,7 +5,8 @@
     debug:
       msg: "{\"DO_declaration\": {{ lookup('template','{{ role_path }}/templates/template_DO_declaration_BIG-IP.j2') }}}"
     # with_dict: "{{device_vars}}"
-
+    tags:
+    - buildInfra
 
   - name: "REST call DO declaration to BIG-IPs"
     uri:
@@ -23,13 +24,15 @@
       validate_certs: no
     register: DO_output
     # with_dict: "{{device_vars}}"
-
+    tags:
+    - buildInfra
 
 
   - name: Creating DO task variable for subsequent tasks 
     set_fact:
       id: "{{DO_output.results[0].json.id}}"
-
+    tags:
+    - buildInfra
 
 
   - name: Delay checking BIG-IP for 30 seconds allowing DO declaration to process
@@ -38,7 +41,8 @@
       delay: 30
       provider: "{{ provider }}"
     # with_dict: "{{device_vars}}"
-
+    tags:
+    - buildInfra
 
   - name: "REST to check for Successfull DO Declaration to both BIG-IPs"
     uri:
