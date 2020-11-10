@@ -1,0 +1,7 @@
+---
+
+  - name: Cleaning up temporary directories prior to getting intent data
+    file:
+      path: "{{ role_path }}/tmp"
+      state: absent
+

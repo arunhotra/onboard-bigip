@@ -1,0 +1,36 @@
+
+
+
+- import_tasks: build_provider.yaml
+  tags:
+    - buildGTMApp
+
+
+- import_tasks: cleanup_temp_directories.yaml
+  tags:
+    - buildGTMApp
+
+- import_tasks: bigip_appIntentData_get.yaml
+  tags:
+    - buildGTMApp
+
+- import_tasks: bigip_appIntentData_remove.yaml
+  tags:
+    - buildGTMApp
+
+- import_tasks: bigip_wait.yaml
+  tags:
+    - buildGTMApp
+
+- import_tasks: bigip_as3_rpms.yaml
+  tags:
+    - buildGTMApp
+
+- import_tasks: bigip_wait.yaml
+  tags:
+    - buildGTMApp
+
+- import_tasks: bigip_as3GTMOnboarding.yaml
+  tags:
+    - buildGTMApp
+

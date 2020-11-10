@@ -1,0 +1,24 @@
+
+---
+
+  - name: Create temporary directories for storing variables 
+    file: 
+      path: "{{ role_path }}/tmp/{{ group_names[0] }}/{{ inventory_hostname_short }}/{{ appType }}"
+      state: directory
+
+  
+  - name: Download device details from intent data for apps
+    get_url:
+      url: "https://raw.githubusercontent.com/arunhotra/apprepo/master/{{ group_names[0] }}/{{ inventory_hostname_short }}/{{ appType }}/appVars.json"
+      dest: "{{ role_path }}/tmp/{{ group_names[0] }}/{{ inventory_hostname_short }}/{{ appType }}/appVars.json"
+
+
+  - name: Creating app variables from sourcedepot
+    include_vars:
+      name: "app_vars"
+      dir: "{{ role_path }}/tmp/{{ group_names[0] }}/{{ inventory_hostname_short }}/"
+      files_matching: appVars.json
+
+  - name: Print app_vars
+    debug:
+      msg: "{{app_vars}}"

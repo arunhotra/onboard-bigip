@@ -6,5 +6,7 @@ all:
       hosts:
         bigipA.example.com:
         bigipB.example.com:
-        
+    virtualDataCenterGTM:
+      hosts:
+        bigipG.example.com:       
 

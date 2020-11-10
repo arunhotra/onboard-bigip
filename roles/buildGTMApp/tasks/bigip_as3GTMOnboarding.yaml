@@ -1,0 +1,57 @@
+---
+
+
+  - name: Print rendered AS3 declaration
+    debug:
+      msg: "{\"AS3_declaration\": {{ lookup('template','{{ role_path }}/templates/template_AS3_GTM_declaration_BIG-IP.j2') }}}"
+    
+
+
+  - name: "REST call AS3 declaration to BIG-IPs"
+    uri:
+      url: "https://{{inventory_hostname}}:{{bigip_port}}/{{ as3uri }}?async=true"
+      method: POST
+      body: "{{ lookup('template','{{ role_path }}/templates/template_AS3_GTM_declaration_BIG-IP.j2') }}"
+      headers:
+        Content-Type: "application/json"
+      return_content: yes
+      body_format: json
+      status_code: [202,200]
+      url_username: "{{bigip_username}}"
+      url_password: "{{bigip_password}}"
+      force_basic_auth: yes
+      validate_certs: no
+    register: AS3_output
+
+
+
+
+  - name: Creating AS3 task variable for subsequent tasks 
+    set_fact:
+      id: "{{AS3_output.json.id}}"
+
+
+
+  - name: Delay checking BIG-IP for 30 seconds allowing AS3 declaration to process
+    bigip_wait:
+      timeout: 600
+      delay: 30
+      provider: "{{ provider }}"
+
+
+
+  - name: "REST to check for Successfull AS3 Declaration "
+    uri:
+      url: "https://{{inventory_hostname}}:{{bigip_port}}/{{taskuri}}/{{id}}"
+      method: GET
+      return_content: yes
+      status_code: [200, 202]
+      url_username: "{{bigip_username}}"
+      url_password: "{{bigip_password}}"
+      force_basic_auth: yes
+      validate_certs: no
+    register: AS3_task_check
+    until: AS3_task_check.json.results[1].message.find("success") != -1
+    retries: 40
+    delay: 15
+

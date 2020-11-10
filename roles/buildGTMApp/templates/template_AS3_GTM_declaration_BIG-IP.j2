@@ -1,0 +1,75 @@
+{
+    "class": "ADC",
+    "schemaVersion": "3.15.0",
+    "id": "{{env}}_{{appType}}",
+    "t_{{env}}_{{appType}}": {
+        "class": "Tenant",
+        "Application": {
+            "class": "Application",
+            "appDomain": {
+                "class": "GSLB_Domain",
+                "domainName": "{{app_vars.domain}}",
+                "resourceRecordType": "A",
+                "poolLbMode": "ratio",
+                "pools": [
+                    {
+                        "use": "onboardedAppPool"
+                    }
+                ]
+            },
+            "onboardedAppPool": {
+                "class": "GSLB_Pool",
+                "enabled": false,
+                "members": [
+                    {
+                        "ratio": 10,
+                        "server": {
+                            "use": "/Common/Shared/bigipA_bigipB"
+                        },
+                        "virtualServer": "0"
+                    }
+                ],
+                "monitors": [
+                    {
+                        "bigip": "/Common/http"
+                    }
+                ],
+                "resourceRecordType": "A",
+                "fallbackIP": "1.1.1.1"
+            }
+        }
+    },
+    "Common": {
+        "class": "Tenant",
+        "Shared": {
+            "class": "Application",
+            "template": "shared",
+            "bostonDC": {
+                "class": "GSLB_Data_Center"
+            },
+            "bigipA_bigipB": {
+                "class": "GSLB_Server",
+                "serverType": "generic-host",
+                "dataCenter": {
+                    "use": "bostonDC"
+                },
+                "devices": [
+                    {
+                        "address": "{{app_vars.vs_ip}}"
+                    }
+                ],
+                "monitors": [
+                    {
+                        "bigip": "/Common/http"
+                    }
+                ],
+                "virtualServers": [
+                    {
+                        "address": "{{app_vars.vs_ip}}",
+                        "port": {{app_vars.vs_port}}
+                    }
+                ]
+            }
+        }
+    }
+}

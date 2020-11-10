@@ -1,0 +1,11 @@
+---
+
+- name: BIG IP GTM App onboarding
+  hosts: virtualDataCenterGTM
+  connection: local
+  gather_facts: no
+
+    
+  roles:
+    - buildGTMApp
+
