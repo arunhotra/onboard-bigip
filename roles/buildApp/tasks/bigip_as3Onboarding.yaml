@@ -3,7 +3,7 @@
 
   - name: Print rendered AS3 declaration
     debug:
-      msg: "{\"AS3_declaration\": {{ lookup('template','{{ role_path }}/templates/template_AS3_declaration_BIG-IP.j2') }}}"
+      msg: "{\"AS3_declaration\": {{ lookup('template','{{ role_path }}/templates/{{appType}}_template.j2') }}}"
     
 
 
@@ -11,7 +11,7 @@
     uri:
       url: "https://{{inventory_hostname}}:{{bigip_port}}/{{ as3uri }}?async=true"
       method: POST
-      body: "{{ lookup('template','{{ role_path }}/templates/template_AS3_declaration_BIG-IP.j2') }}"
+      body: "{{ lookup('template','{{ role_path }}/templates/{{appType}}_template.j2') }}"
       headers:
         Content-Type: "application/json"
       return_content: yes

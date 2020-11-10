@@ -30,7 +30,7 @@
 
   - name: Creating DO task variable for subsequent tasks 
     set_fact:
-      id: "{{DO_output.results[0].json.id}}"
+      id: "{{DO_output.json.id}}"
     tags:
     - buildInfra
 

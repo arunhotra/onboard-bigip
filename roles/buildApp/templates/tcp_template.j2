@@ -1,0 +1,48 @@
+  
+{
+     "class": "AS3",
+     "declaration": {
+         "class": "ADC",
+         "schemaVersion": "3.20.0",
+         "id": "{{env}}_{{appType}}",
+         "label": "AS3_app",
+         "remark": "Created_using_AS3",
+         "t_{{appType}}": {
+             "class": "Tenant",
+             "defaultRouteDomain": 0,
+             "{{env}}_{{appType}}_{{app_vars.vs_port}}": {
+                 "class": "Application",
+                 "template": "generic",
+                 "{{env}}_{{appType}}_{{app_vars.vs_port}}_vs": {
+                   "class": "Service_TCP",
+                   "virtualAddresses": [
+                     "{{app_vars.vs_ip}}"
+                 ],
+                  "virtualPort": {{app_vars.vs_port}},
+                  "pool": "{{env}}_{{appType}}_{{app_vars.vs_port}}_pool"
+                 },
+                 
+                 "{{env}}_{{appType}}_{{app_vars.vs_port}}_pool": {
+                     "class": "Pool",
+                    "monitors": [
+                            "tcp"
+                        ],
+                     "members": [
+                      {% for member in app_vars.pool %}
+                      {
+                         "servicePort": {{app_vars.vs_port}},
+                         "serverAddresses": [
+                              "{{member}}"
+                         ],
+                         "adminState": "enable"
+                      }
+                      {% if not loop.last %}
+                        ,
+                      {% endif %}
+                      {% endfor %}
+                    ]
+                 }
+            }
+         }
+     }
+ }
