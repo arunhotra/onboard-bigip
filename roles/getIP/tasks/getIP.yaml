@@ -1,0 +1,9 @@
+---
+
+- name: configure an IPv4 host record
+    nios_host_record:
+      name: leaf03.example.com
+      ipv4addrs:
+        - ipv4addr: "{{ lookup('nios_next_ip', '172.100.1.0/24', provider=nios_provider)[0] }}"
+      state: present
+      provider: "{{nios_provider}}"

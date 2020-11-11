@@ -20,4 +20,6 @@ COPY . /ansible
 
 WORKDIR /ansible
 
+RUN ansible-galaxy collection install f5networks.f5_modules -p ./collections
+
 CMD [ "sh" ]

@@ -8,5 +8,8 @@ all:
         bigipB.example.com:
     virtualDataCenterGTM:
       hosts:
-        bigipG.example.com:       
+        bigipG.example.com:   
+    ipam:
+      hosts:
+        ipam.example.com:
 
