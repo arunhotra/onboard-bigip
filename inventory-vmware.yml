@@ -6,6 +6,10 @@ all:
       hosts:
         bigipA.example1.com:
         bigipB.example1.com:
+    onboarded-ha-pair:
+      hosts:
+        bigip1-test1.example1.com:
+        bigip2-test1.example1.com:
     virtualDataCenterGTM:
       hosts:
         bigipG.example1.com:   

@@ -1,12 +1,8 @@
 
 ---
 
-- include_tasks: build_provider.yaml
+- include_tasks: populateVars.yaml
   tags:
-    - mapIP
+    - buildSOT
 
-
-- include_tasks: mapIP.yaml
-  tags:
-    - mapIP
 
