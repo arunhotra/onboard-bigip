@@ -4,12 +4,15 @@ all:
   children:
     virtualDataCenter:
       hosts:
-        bigipA.example.com:
-        bigipB.example.com:
+        bigipA.example1.com:
+        bigipB.example1.com:
     virtualDataCenterGTM:
       hosts:
-        bigipG.example.com:   
+        bigipG.example1.com:   
     ipam:
       hosts:
-        ipam.example.com:
+        ipam.example1.com:
+    vra:
+      hosts:
+        icpwvcf02-vra.jpmclab.local:
 

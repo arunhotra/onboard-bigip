@@ -1,0 +1,22 @@
+---
+
+  - name: Print rendered JSON
+    debug:
+      msg: "{\"POST_BODY\": {{ lookup('file','{{ role_path }}/files/vra_ha_pair.json') }}}"
+
+
+  - name: "REST call to VRA to onboard BIG-IPs"
+    uri:
+      url: "https://{{inventory_hostname}}/{{ VRAuri }}"
+      method: POST
+      body: "{{ lookup('file','{{ role_path }}/files/vra_ha_pair.json') }}"      
+      headers:
+        # Accept: "application/json"
+        Content-Type: "application/json"
+        Authorization: "Bearer {{vra_token}}" 
+      return_content: yes
+      body_format: json
+      status_code: [201,202,200]
+      validate_certs: no
+    register: VRA_output
+

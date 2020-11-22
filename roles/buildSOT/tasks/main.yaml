@@ -1,0 +1,12 @@
+
+---
+
+- include_tasks: build_provider.yaml
+  tags:
+    - mapIP
+
+
+- include_tasks: mapIP.yaml
+  tags:
+    - mapIP
+

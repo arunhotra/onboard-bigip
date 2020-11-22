@@ -1,5 +1,5 @@
-    username: admin
+    ipam_username: admin
 
     #sensitive data
 
-    password: "{{ vault_ipam_password }}"
+    ipam_password: "{{ vault_ipam_password }}"
