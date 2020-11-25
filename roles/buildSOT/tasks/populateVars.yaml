@@ -2,4 +2,4 @@
   
   - name: Print all avaialable variables
     debug:
-      var: "{{ hostvars }}"
+      var: "{{ VirtualMachine_Network0_Address }}"

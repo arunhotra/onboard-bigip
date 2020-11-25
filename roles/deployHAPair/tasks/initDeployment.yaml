@@ -20,3 +20,20 @@
       validate_certs: no
     register: VRA_output
 
+  - name: Get the id for the deployment
+    set_fact:
+      deployment_task_id: "{{VRA_output.json.id}}"
+
+  - name: "Verify the status of the task"
+    uri:
+      url: "https://{{inventory_hostname}}/{{ VRAtaskuri }}/{{deployment_task_id}}"
+      method: GET
+      return_content: yes
+      status_code: [200, 202]
+      headers:      
+        Authorization: "Bearer {{vra_token}}" 
+      validate_certs: no
+    register: VRA_task_check
+    until: VRA_task_check.json.state == 'SUCCESSFUL'
+    retries: 50
+    delay: 30
