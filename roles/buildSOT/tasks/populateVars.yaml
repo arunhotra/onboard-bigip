@@ -1,5 +1,8 @@
----
-  
-  - name: Print all avaialable variables
+  - name: Debug aa variable
     debug:
-      var: "{{ VirtualMachine_Network0_Address }}"
+      var: "{{ VirtualMachine_Storage_Name }}"
+
+  # - name: Copy output to file
+  #   copy:
+  #     content: "{{hostvars[inventory_hostname]}}"
+  #     dest: "{{ inventory_hostname }}.json"
