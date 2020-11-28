@@ -1,9 +1,9 @@
 {
 	"base": {
 		"mgmt": {
-			"ip":"{{ VirtualMachine_Network0_Address }}"
+			"ip":"{{ VirtualMachine_Network0_Address }}",
+            "hostname": "{{ VirtualMachine_Network0_Hostname }}"
 		},
-
 		"haPeer": {
 			"primary": true,
 			"peerName": "dcibigipB.example.com",
