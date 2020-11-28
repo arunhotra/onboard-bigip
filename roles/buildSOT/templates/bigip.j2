@@ -1,0 +1,44 @@
+{
+	"base": {
+		"mgmt": {
+			"ip":"{{ VirtualMachine_Network0_Address }}"
+		},
+
+		"haPeer": {
+			"primary": true,
+			"peerName": "dcibigipB.example.com",
+			"haIp": "172.100.4.251"
+		},
+		"externalIp": {
+			"name": "externalIP",
+			"ip": "{{ VirtualMachine_Network2_Address }}",
+			"cidr": "/24",
+			"vlan": "external"
+		},
+		"externalFloatIp": {
+			"name": "externalFloatIP",
+			"ip": "172.100.1.4",
+			"cidr": "/24",
+			"vlan": "external"
+		},
+		"internalRedIp": {
+			"name": "internalRedIP",
+			"ip": "{{ VirtualMachine_Network1_Address }}",
+			"cidr": "/24",
+			"vlan": "internalRed"
+		},
+		"internalRedFloatIp": {
+			"name": "internalRedFloatIP",
+			"ip": "172.100.2.4",
+			"cidr": "/24",
+			"vlan": "internalRed"
+		},
+		"haIp": {
+			"name": "haIP",
+			"ip": "{{ VirtualMachine_Network3_Address }}",
+			"cidr": "/24",
+			"vlan": "ha"
+		},
+		"dataCenter": "virtualDataCenter"
+	}
+}

@@ -1,8 +1,13 @@
-  - name: Debug aa variable
-    debug:
-      var: "{{ VirtualMachine_Storage_Name }}"
+  # - name: Debug aa variable
+  #   debug:
+  #     var: "{{ VirtualMachine_Storage_Name }}"
 
-  # - name: Copy output to file
-  #   copy:
-  #     content: "{{hostvars[inventory_hostname]}}"
-  #     dest: "{{ inventory_hostname }}.json"
+  # # - name: Copy output to file
+  # #   copy:
+  # #     content: "{{hostvars[inventory_hostname]}}"
+  # #     dest: "{{ inventory_hostname }}.json"
+
+
+  - name: Print rendered DO declaration
+    debug:
+      msg: "{\"Build SOT Template\": {{ lookup('template','{{ role_path }}/templates/bigip.j2') }}}"
