@@ -12,11 +12,11 @@
   #   debug:
   #     msg: "{\"Build SOT Template\": {{ lookup('template','{{ role_path }}/templates/bigip.j2') }}}"
 
-  - name: Ensure server is present in known_hosts file
-    known_hosts:
-      name: "github.com"
-      state: present
-      key: "{{ lookup('pipe', 'ssh-keyscan github.com') }}"
+  # - name: Ensure server is present in known_hosts file
+  #   known_hosts:
+  #     name: "github.com"
+  #     state: present
+  #     key: "{{ lookup('pipe', 'ssh-keyscan github.com') }}"
 
 
   - git:
