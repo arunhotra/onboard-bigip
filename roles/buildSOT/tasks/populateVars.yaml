@@ -8,6 +8,11 @@
   # #     dest: "{{ inventory_hostname }}.json"
 
 
-  - name: Print rendered DO declaration
-    debug:
-      msg: "{\"Build SOT Template\": {{ lookup('template','{{ role_path }}/templates/bigip.j2') }}}"
+  # - name: Print rendered DO declaration
+  #   debug:
+  #     msg: "{\"Build SOT Template\": {{ lookup('template','{{ role_path }}/templates/bigip.j2') }}}"
+
+
+  - git:
+      repo: git@github.com:arunhotra/infra-repo.git
+      dest: {{role_path}}/files/repos
