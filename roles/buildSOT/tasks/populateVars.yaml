@@ -18,6 +18,10 @@
   #     state: present
   #     key: "{{ lookup('pipe', 'ssh-keyscan github.com') }}"
 
+  - name: Cleaning up temporary directories prior to getting intent data
+    file:
+      path: "{{ role_path }}/files/repos"
+      state: absent
 
   - git:
       repo: git@github.com:arunhotra/infra-repo.git
