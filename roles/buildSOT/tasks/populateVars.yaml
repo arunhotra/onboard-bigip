@@ -15,4 +15,4 @@
 
   - git:
       repo: git@github.com:arunhotra/infra-repo.git
-      dest: {{role_path}}/files/repos
+      dest: "{{role_path}}/files/repos"
