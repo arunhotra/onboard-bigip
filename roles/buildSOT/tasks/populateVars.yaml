@@ -39,6 +39,6 @@
       dest: "{{role_path}}/tmp/repos/virtualDataCenter/{{inventory_hostname_short}}.json"
 
   - name: Change the working directory to somedir/ before executing the command
-    shell: git add . ; git commit -m "onboarded ha pair" ; git push origin master
+    shell: git config --global user.name "arunganti" ; git config --global user.email "a.ganti@f5.com" ; git add . ; git commit -m "onboarded ha pair" ; git push origin master
     args:
       chdir: "{{role_path}}/tmp/repos"
