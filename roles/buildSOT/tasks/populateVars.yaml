@@ -34,6 +34,6 @@
 
   - name: Poplulate files from template
     template:
-      src: "{{ lookup('template','{{ role_path }}/templates/test.j2') }}}"
+      src: 'bigip.j2'
       # src: "{{ lookup('template','{{ role_path }}/templates/bigip.j2') }}}"
-      dest: "{{role_path}}/tmp/repos/virtualDatacenter/{{inventory_hostname_short}}.json"
+      dest: "{{role_path}}/tmp/repos/virtualDataCenter/{{inventory_hostname_short}}.json"
