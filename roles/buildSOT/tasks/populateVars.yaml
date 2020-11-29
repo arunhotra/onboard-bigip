@@ -26,3 +26,5 @@
   - git:
       repo: git@github.com:arunhotra/infra-repo.git
       dest: "{{role_path}}/files/repos"
+      accept_hostkey: true
+      
