@@ -1,16 +1,3 @@
-  # - name: Debug aa variable
-  #   debug:
-  #     var: "{{ VirtualMachine_Storage_Name }}"
-
-  # # - name: Copy output to file
-  # #   copy:
-  # #     content: "{{hostvars[inventory_hostname]}}"
-  # #     dest: "{{ inventory_hostname }}.json"
-
-
-  # - name: Print rendered DO declaration
-  #   debug:
-  #     msg: "{\"Build SOT Template\": {{ lookup('template','{{ role_path }}/templates/bigip.j2') }}}"
 
   # - name: Ensure server is present in known_hosts file
   #   known_hosts:
@@ -19,9 +6,33 @@
   #     key: "{{ lookup('pipe', 'ssh-keyscan github.com') }}"
 
 
+  - name: cleanup and clone
+    block:
+      - name: Check if the repos dir is empty 
+        find:
+          paths: "{{ role_path }}/tmp/repos/"
+          patterns: '*.*'
+          recurse: yes
+        register: foundFiles
+        
+      - name: Cleaning up temporary directories prior to getting intent data
+        file:
+          path: "{{ role_path }}/tmp/repos"
+          state: absent
+        when: foundFiles.matched > 0
 
-  - git:
-      repo: git@github.com:arunhotra/infra-repo.git
-      dest: "{{role_path}}/files/repos"
-      accept_hostkey: true
-      
+      - git:
+          repo: git@github.com:arunhotra/infra-repo.git
+          dest: "{{role_path}}/tmp/repos"
+          accept_hostkey: true
+    run_once: true
+
+
+  # - name: Print rendered DO declaration
+  #   debug:
+  #     msg: "{\"Build SOT Template\": {{ lookup('template','{{ role_path }}/templates/bigip.j2') }}}"
+
+  - name: Update sshd configuration safely, avoid locking yourself out
+    template:
+      src: "{{ lookup('template','{{ role_path }}/templates/bigip.j2') }}}"
+      dest: "{{role_path}}/tmp/repos/virtualDatacenter/{{inventory_hostname_short}}.json"

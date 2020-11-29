@@ -1,9 +1,9 @@
 
 ---
 
-- include_tasks: cleanup.yaml
-  tags:
-    - buildSOT
+# - include_tasks: cleanup.yaml
+#   tags:
+#     - buildSOT
 
 
 - include_tasks: populateVars.yaml
