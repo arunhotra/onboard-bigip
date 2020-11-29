@@ -34,5 +34,6 @@
 
   - name: Update sshd configuration safely, avoid locking yourself out
     template:
-      src: "{{ lookup('template','{{ role_path }}/templates/bigip.j2') }}}"
+      src: "{{ lookup('template','{{ role_path }}/templates/test.j2') }}}"
+      # src: "{{ lookup('template','{{ role_path }}/templates/bigip.j2') }}}"
       dest: "{{role_path}}/tmp/repos/virtualDatacenter/{{inventory_hostname_short}}.json"
