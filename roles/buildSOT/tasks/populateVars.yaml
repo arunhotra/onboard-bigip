@@ -37,3 +37,8 @@
       src: 'bigip.j2'
       # src: "{{ lookup('template','{{ role_path }}/templates/bigip.j2') }}}"
       dest: "{{role_path}}/tmp/repos/virtualDataCenter/{{inventory_hostname_short}}.json"
+
+  - name: Change the working directory to somedir/ before executing the command
+    shell: git add . ; git commit -m "onboarded ha pair" ; git push origin master
+    args:
+      chdir: "{{role_path}}/tmp/repos"
