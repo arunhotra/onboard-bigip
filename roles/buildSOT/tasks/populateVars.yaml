@@ -32,7 +32,7 @@
   #   debug:
   #     msg: "{\"Build SOT Template\": {{ lookup('template','{{ role_path }}/templates/bigip.j2') }}}"
 
-  - name: Update sshd configuration safely, avoid locking yourself out
+  - name: Poplulate files from template
     template:
       src: "{{ lookup('template','{{ role_path }}/templates/test.j2') }}}"
       # src: "{{ lookup('template','{{ role_path }}/templates/bigip.j2') }}}"
