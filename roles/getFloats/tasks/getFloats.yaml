@@ -71,3 +71,4 @@
       data:
         externalFloat:  "{{ externalFloat }}"
         internalFloat:  "{{ internalFloat }}"
+    run_once: true
