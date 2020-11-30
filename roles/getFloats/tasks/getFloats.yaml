@@ -64,3 +64,10 @@
           msg: "{{ internalFloat }}"
         
     run_once: true
+
+
+  - name: "Share these variables across playbooks"
+    set_stats:
+      data:
+        externalFloat:  "{{ externalFloat }}"
+        internalFloat:  "{{ internalFloat }}"
