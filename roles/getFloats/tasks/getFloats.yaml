@@ -27,27 +27,35 @@
 
   - name: Get floating IPs
     block:
-      - name: Get a float IP for the external network
+      - name: Get an external network IP
+        set_fact:
+        externalFloat: "{{ lookup('nios_next_ip', '192.168.251.0/24', provider=nios_provider)[0] }}"
+
+      - name: Map the above float IP for the external network
         nios_fixed_address:
           name: "{{ inventory_hostname }}-external-float"
-          ipaddr: "{{ lookup('nios_next_ip', '192.168.251.0/24', provider=nios_provider)[0] }}"
+          ipaddr: "{{ externalFloat }}"
           mac: "{{ '52:54:00' | random_mac }}"
           network: 192.168.251.0/24
           network_view: default
           comment: get a float from external IP range
           state: present
           provider: "{{ nios_provider }}"
-        register: externalFloat
 
-      - name: Get a float IP for the internal network
+
+      - name: Get an internal network IP
+        set_fact:
+        internalFloat: "{{ lookup('nios_next_ip', '192.168.252.0/24', provider=nios_provider)[0] }}"
+
+      - name: Map the above float IP for the internal network
         nios_fixed_address:
           name: "{{ inventory_hostname }}-internal-float"
-          ipaddr: "{{ lookup('nios_next_ip', '192.168.252.0/24', provider=nios_provider)[0] }}"
+          ipaddr: "{{ internalFloat }}"
           mac: "{{ '52:54:01' | random_mac }}"
           network: 192.168.252.0/24
           network_view: default
           comment: get a float from internal IP range
           state: present
           provider: "{{ nios_provider }}"
-        register: internalFloat
+        
     run_once: true
