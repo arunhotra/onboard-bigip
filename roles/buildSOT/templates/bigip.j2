@@ -1,5 +1,8 @@
 {
 	"base": {
+		"timestamp": {
+			"epoch":"{{ ansible_date_time.epoch }}"
+		},
 		"mgmt": {
 			"ip":"{{ VirtualMachine_Network0_Address }}",
             "hostname": "{{ VirtualMachine_Network0_Hostname }}"
