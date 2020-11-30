@@ -1,22 +1,53 @@
 ---
 
-- name: Get floating IP's 
-  block:
-    - name: Get an IP from IPAM for the external float
-      nios_host_record:
-        name: "{{ inventory_hostname }}"
-        ipv4addrs:
-          - ipv4addr: "{{ lookup('nios_next_ip', '192.168.254.0/24', provider=nios_provider)[0] }}"
-        state: present
-        provider: "{{nios_provider}}"
-      register: externalFloat
+# - name: Get floating IP's 
+#   block:
+#     - name: Get an IP from IPAM for the external float
+#       nios_host_record:
+#         name: "{{ inventory_hostname }}-externalFloat"
+#         ipv4addrs:
+#           - ipv4addr: "{{ lookup('nios_next_ip', '192.168.251.0/24', provider=nios_provider)[0] }}"
+#         state: present
+#         provider: "{{nios_provider}}"
+#       register: externalFloat
 
-    - name: Get an IP from IPAM for the internal Red float
-      nios_host_record:
-        name: "{{ inventory_hostname }}"
-        ipv4addrs:
-          - ipv4addr: "{{ lookup('nios_next_ip', '192.168.252.0/24', provider=nios_provider)[0] }}"
-        state: present
-        provider: "{{nios_provider}}"
-      register: internalFloat
-  run_once: true
+#     - name: Get an IP from IPAM for the internal Red float
+#       nios_host_record:
+#         name: "{{ inventory_hostname }}-internalFloat"
+#         ipv4addrs:
+#           - ipv4addr: "{{ lookup('nios_next_ip', '192.168.252.0/24', provider=nios_provider)[0] }}"
+#         state: present
+#         provider: "{{nios_provider}}"
+#       register: internalFloat
+#   run_once: true
+
+  # - name : Get next available IP from IPAM
+  #   set_fact:
+  #     externalFloat: "{{ lookup('nios_next_ip', '192.168.251.0/24', provider=nios_provider)[0] }}"
+
+  - name: Get floating IPs
+    block:
+      - name: Get a float IP for the external network
+        nios_fixed_address:
+          name: "{{ inventory_hostname }}-external-float"
+          ipaddr: "{{ lookup('nios_next_ip', '192.168.251.0/24', provider=nios_provider)[0] }}"
+          mac: "{{ '52:54:00' | random_mac }}"
+          network: 192.168.251.0/24
+          network_view: default
+          comment: get a float from external IP range
+          state: present
+          provider: "{{ nios_provider }}"
+        register: externalFloat
+
+      - name: Get a float IP for the internal network
+        nios_fixed_address:
+          name: "{{ inventory_hostname }}-internal-float"
+          ipaddr: "{{ lookup('nios_next_ip', '192.168.252.0/24', provider=nios_provider)[0] }}"
+          mac: "{{ '52:54:01' | random_mac }}"
+          network: 192.168.252.0/24
+          network_view: default
+          comment: get a float from internal IP range
+          state: present
+          provider: "{{ nios_provider }}"
+        register: internalFloat
+    run_once: true

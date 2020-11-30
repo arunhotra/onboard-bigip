@@ -2,3 +2,4 @@
 
 as3uri: mgmt/shared/appsvcs/declare
 taskuri: mgmt/shared/appsvcs/task
+ipam_hostname: ipam.example1.com
