@@ -43,7 +43,7 @@
           provider: "{{ nios_provider }}"
 
       - debug: Debug the externalFloat IP
-         var: externalFloat
+         msg: "{{ externalFloat }}"
 
       - name: Get an internal network IP
         set_fact:
@@ -61,6 +61,6 @@
           provider: "{{ nios_provider }}"
 
       - debug: Debug the internalFloat IP
-         var: internalFloat
+         msg: "{{ internalFloat }}"
         
     run_once: true
