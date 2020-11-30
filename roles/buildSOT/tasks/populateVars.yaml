@@ -1,9 +1,4 @@
 
-  # - name: Ensure server is present in known_hosts file
-  #   known_hosts:
-  #     name: "github.com"
-  #     state: present
-  #     key: "{{ lookup('pipe', 'ssh-keyscan github.com') }}"
 
 
   - name: cleanup and clone
@@ -27,10 +22,6 @@
           accept_hostkey: true
     run_once: true
 
-
-  # - name: Print rendered DO declaration
-  #   debug:
-  #     msg: "{\"Build SOT Template\": {{ lookup('template','{{ role_path }}/templates/bigip.j2') }}}"
 
   - name: Poplulate files from template
     template:

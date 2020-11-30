@@ -1,0 +1,12 @@
+
+---
+
+- include_tasks: build_provider.yaml
+  tags:
+    - getFloats
+
+
+- include_tasks: getFloats.yaml
+  tags:
+    - getFloats
+
