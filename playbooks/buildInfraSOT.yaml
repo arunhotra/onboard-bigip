@@ -1,0 +1,14 @@
+---
+
+- name: Build the Source of truth from the varaialbles provided by VRA
+  hosts: onboarded-ha-pair
+  connection: local
+  gather_facts: yes
+
+  
+  roles:
+    - buildSOT
+    - getFloats
+
+    
+
