@@ -1,0 +1,24 @@
+
+---
+
+ - name: Initialize variables
+   vars:
+   set_fact: 
+     hosts: []
+     ha_ips: {}
+
+ 
+ - name: Create a list of the hosts
+   vars:
+   set_fact:
+     hosts: "{{ hosts|default([]) + [ item ] }}"
+   with_inventory_hostnames:
+     - onboarded-ha-pair
+
+
+ - name: Create list of AWS public IPs
+   set_fact:
+     ha_ips: "{{ ha_ips | combine({inventory_hostname_short: VirtualMachine_Network3_Address}, recursive=True) }}"
+  # with_items:
+  #     - "{{ hosts }}"
+
