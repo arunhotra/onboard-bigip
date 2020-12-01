@@ -13,7 +13,7 @@
             "classId": "Blueprint.Component.Declaration",
             "typeFilter": "f5SovlabsHaPair*F5_appliance",
             "data": {
-                "Hostname": "bigip1-test5"
+                "Hostname": "{{bigip1-hostname}}"
             }
         },
         "F5_appliance2": {
@@ -22,7 +22,7 @@
             "classId": "Blueprint.Component.Declaration",
             "typeFilter": "f5SovlabsHaPair*F5_appliance2",
             "data": {
-                "Hostname": "bigip2-test5"
+                "Hostname": "{{bigip2-hostname}}"
             }
         },
         "_leaseDays": null,
