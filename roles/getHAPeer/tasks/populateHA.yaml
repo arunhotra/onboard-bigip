@@ -1,9 +1,4 @@
 ---
-- name: Initialize variables
-  vars:
-  set_fact:
-    ha_ips: {}
-
 - name: Check that the file exists
   stat:
     path: "{{ role_path }}/tmp/ha.json"

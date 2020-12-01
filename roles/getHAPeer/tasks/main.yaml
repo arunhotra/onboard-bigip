@@ -1,4 +1,8 @@
 ---
+- include_tasks: init.yaml
+  tags:
+    - getHAPeer
+
 - include_tasks: populateHA.yaml
   tags:
     - getHAPeer

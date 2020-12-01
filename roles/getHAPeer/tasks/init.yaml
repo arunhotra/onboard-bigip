@@ -1,0 +1,7 @@
+---
+- name: Initialize variables
+  vars:
+  set_fact:
+    ha_ips: {}
+    ha_peer_ips: {}
+    ha_peer_ip: ""
