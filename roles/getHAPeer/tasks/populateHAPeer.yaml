@@ -1,0 +1,20 @@
+---
+- name: Initialize variables
+  vars:
+  set_fact:
+    ha_peer_ips: {}
+    ha_peer_ip: ""
+
+- name: load vars from file
+  include_vars:
+    file: "{{ role_path }}/tmp/ha.json"
+    name: ha_ips
+
+- name: Populate the HA IP
+  set_fact:
+    ha_peer_ip: "{{ VirtualMachine_Network3_Address }}"
+  when: inventory_hostname_short not in item.key
+  with_dict: "{{ ha_ips }}"
+
+- debug:
+    msg: "{{ha_peer_ip}}"
