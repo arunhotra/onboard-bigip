@@ -1,6 +1,12 @@
 ---
+- name: Create vars for machine
+  set_fact:
+    machine:
+      username: "admin"
+      password: "infoblox"
+
 - debug:
-    msg: "{{ username }}"
+    msg: "{{ machine }}"
 
 - name: Setup nios provider
   set_fact:
