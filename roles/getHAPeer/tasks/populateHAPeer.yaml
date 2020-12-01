@@ -10,3 +10,12 @@
     ha_peer_ip: "{{ item.value }}"
   when: inventory_hostname_short not in item.key
   with_dict: "{{ ha_ips_from_file }}"
+
+- name: Populate a list of avaialable inventory
+  set_fact:
+    inv_list: "{{ ansible_play_batch }}"
+
+- name: Populate the HA Status
+  set_fact:
+    ha_status: true
+  when: "{{ inventory_hostname not in inv_list[0] }}"

@@ -5,3 +5,5 @@
     ha_ips: {}
     ha_peer_ips: {}
     ha_peer_ip: ""
+    ha_status: false
+    inv_list: []
