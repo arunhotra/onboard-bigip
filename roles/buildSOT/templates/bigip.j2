@@ -8,7 +8,7 @@
             "hostname": "{{ VirtualMachine_Network0_Hostname }}"
 		},
 		"haPeer": {
-			"primary": "{{ ha_status }}",
+			"primary": "{{ ha_status | bool }}",
 			"haIp": "{{ ha_peer_ip }}"
 		},
 		"externalIp": {
