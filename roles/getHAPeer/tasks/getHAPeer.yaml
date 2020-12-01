@@ -8,17 +8,36 @@
      ha_ips: {}
 
  
- - name: Create a list of the hosts
-   vars:
-   set_fact:
-     hosts: "{{ hosts|default([]) + [ item ] }}"
-   with_inventory_hostnames:
-     - onboarded-ha-pair
+#  - name: Create a list of the hosts
+#    vars:
+#    set_fact:
+#      hosts: "{{ hosts|default([]) + [ item ] }}"
+#    with_inventory_hostnames:
+#      - onboarded-ha-pair
 
 
- - name: Create list of AWS public IPs
+  - name: Check that the somefile.conf exists
+    stat:
+      path: "{{ role_path }}/tmp/ha.json"
+    register: stat_result
+
+  - name: Create the file, if it doesnt exist already
+    file:
+      path: "{{ role_path }}/tmp/ha.json"
+      state: touch
+    when: not stat_result.stat.exists
+
+ - name: load vars from file
+    include_vars:
+      file: "{{ role_path }}/tmp/ha.json"
+      name: ha_ips
+
+ - name: Populate the HA IP
    set_fact:
      ha_ips: "{{ ha_ips | combine({inventory_hostname_short: VirtualMachine_Network3_Address}, recursive=True) }}"
-  # with_items:
-  #     - "{{ hosts }}"
 
+
+ - name: write ha_ips var to file
+     copy: 
+       content: "{{ ha_ips | to_nice_json }}" 
+       dest: "{{role_path}}/tmp/ha.json"
