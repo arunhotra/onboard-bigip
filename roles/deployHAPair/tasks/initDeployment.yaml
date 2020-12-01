@@ -5,7 +5,7 @@
 
 - name: Fill out template for posting to VRA
   template:
-    src: "{{ lookup('file','{{ role_path }}/templates/vra_ha_pair.j2') }}"
+    src: vra_ha_pair.j2
     dest: "{{ role_path/templates/vra_ha_pair.json }}"
 
 - name: "REST call to VRA to onboard BIG-IPs"
