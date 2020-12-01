@@ -1,9 +1,9 @@
 ---
 - name: Print rendered DO declaration
   debug:
-    msg: '{"DO_declaration": {{ lookup(''template'',''{{ role_path }}/templates/template_DO_declaration_BIG-IP-lic.j2'') }}}'
+    # msg: '{"DO_declaration": {{ lookup(''template'',''{{ role_path }}/templates/template_DO_declaration_BIG-IP-lic.j2'') }}}'
     # msg: "{\"DO_declaration\": {{ lookup('template','{{ role_path }}/templates/template_DO_declaration_BIG-IP.j2') }}}"
-    # msg: "{\"DO_declaration\": {{ lookup('template','{{ role_path }}/templates/template_DO_declaration_BIG-IP-IQ.j2') }}}"
+    msg: '{"DO_declaration": {{ lookup(''template'',''{{ role_path }}/templates/template_DO_declaration_BIG-IP-IQ.j2'') }}}'
   # with_dict: "{{device_vars}}"
   tags:
     - buildInfra
