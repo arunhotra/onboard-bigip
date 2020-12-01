@@ -1,0 +1,5 @@
+---
+- name: Cleanup all json files from the temp directory
+  shell: rm -rf *.json
+  args:
+    chdir: "{{ role_path }}/tmp/"

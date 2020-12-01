@@ -5,14 +5,13 @@
     dir: "{{role_path}}/tmp/"
     name: ha_ips_from_file
 
-- debug:
-    msg: "{{ha_ips_from_file}}"
-
 - name: Populate the HA IP Peers
   set_fact:
     ha_peer_ip: "{{ item.value }}"
   when: inventory_hostname_short not in item.key
   with_dict: "{{ ha_ips_from_file }}"
 
-- debug:
-    msg: "{{ha_peer_ip}}"
+- name: "Share these variables across playbooks"
+  set_stats:
+    data:
+      ha_peer_ip: "{{ ha_peer_ip }}"

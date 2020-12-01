@@ -10,3 +10,7 @@
 - include_tasks: populateHAPeer.yaml
   tags:
     - getHAPeer
+
+- include_tasks: cleanup.yaml
+  tags:
+    - getHAPeer

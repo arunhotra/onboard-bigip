@@ -1,28 +1,7 @@
 ---
-- name: populate HA IP'ss block
-  block:
-    # - name: Check that the file exists
-    #   stat:
-    #     path: "{{ role_path }}/tmp/ha.json"
-    #   register: stat_result
-
-    # - name: Create the file, if it doesnt exist already
-    #   command: touch ha.json
-    #   args:
-    #     chdir: "{{ role_path }}/tmp/"
-    #   when: not stat_result.stat.exists
-
-    # - name: load vars from file
-    #   include_vars:
-    #     file: "{{ role_path }}/tmp/ha.json"
-    #     name: ha_ips
-
-    - name: Populate the HA IP
-      set_fact:
-        ha_ips: "{{ ha_ips | combine({inventory_hostname_short: VirtualMachine_Network3_Address}, recursive=True) }}"
-
-    - debug:
-        msg: "{{ ha_ips }}"
+- name: Populate the HA IP
+  set_fact:
+    ha_ips: "{{ ha_ips | combine({inventory_hostname_short: VirtualMachine_Network3_Address}, recursive=True) }}"
 
 - name: write ha_ips var to file
   copy:
