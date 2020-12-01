@@ -250,7 +250,7 @@
             "class": "DeviceGroup",
             "type": "sync-failover",
             "members": [
-                {% if device_vars.base.haPeer.primary == true  %}
+                {% if device_vars.base.haPeer.primary == "True"  %}
                 "{{device_vars.base.haIp.ip}}",
                 "{{device_vars.base.haPeer.haIp}}"
                 {% else %}
