@@ -1,8 +1,8 @@
 ---
 - name: Map in DNS "{{ inventory_hostname }}" to IP "{{ VirtualMachine_Network0_Address }}"
-  nios_a_record:
+  nios_host_record:
     name: "{{inventory_hostname}}"
-    ipv4addrs:
-      ipv4addr: "{{ VirtualMachine_Network0_Address }}"
+    ipv4:
+      - address: "{{ VirtualMachine_Network0_Address }}"
     state: present
     provider: "{{nios_provider}}"
