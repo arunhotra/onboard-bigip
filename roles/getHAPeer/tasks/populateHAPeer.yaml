@@ -1,17 +1,18 @@
 ---
 - name: load vars from file
   include_vars:
-    file: "{{ role_path }}/tmp/ha.json"
-    name: ha_ips
+    files_matching: .json
+    dir: "{{role_path}}/tmp/"
+    name: ha_ips_from_file
 
 - debug:
-    msg: "{{ha_ips}}"
+    msg: "{{ha_ips_from_file}}"
 
-- name: Populate the HA IP
+- name: Populate the HA IP Peers
   set_fact:
-    ha_peer_ip: "{{ VirtualMachine_Network3_Address }}"
+    ha_peer_ip: "{{ item.value }}"
   when: inventory_hostname_short not in item.key
-  with_dict: "{{ ha_ips }}"
+  with_dict: "{{ ha_ips_from_file }}"
 
 - debug:
     msg: "{{ha_peer_ip}}"

@@ -9,14 +9,15 @@ all:
     onboarded-ha-pair:
       hosts:
         bigip1-test5.example1.com:
+          VirtualMachine_Network3_Address: "1.1.1.1"
         bigip2-test5.example1.com:
+          VirtualMachine_Network3_Address: "2.2.2.2"
     virtualDataCenterGTM:
       hosts:
-        bigipG.example1.com:   
+        bigipG.example1.com:
     ipam:
       hosts:
         ipam.example1.com:
     vra:
       hosts:
         icpwvcf02-vra.jpmclab.local:
-
