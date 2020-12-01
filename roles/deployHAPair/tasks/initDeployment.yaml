@@ -1,39 +1,42 @@
 ---
+# - name: Print rendered JSON
+#   debug:
+#     msg: '{"POST_BODY": {{ lookup(''file'',''{{ role_path }}/files/vra_ha_pair.json'') }}}'
 
-  - name: Print rendered JSON
-    debug:
-      msg: "{\"POST_BODY\": {{ lookup('file','{{ role_path }}/files/vra_ha_pair.json') }}}"
+- name: Fill out template for posting to VRA
+  template:
+    src: "{{ lookup('file','{{ role_path }}/templates/vra_ha_pair.j2') }}"
+    dest: "{{ role_path/templates/vra_ha_pair.json }}"
 
+- name: "REST call to VRA to onboard BIG-IPs"
+  uri:
+    url: "https://{{inventory_hostname}}/{{ VRAuri }}"
+    method: POST
+    body: "{{ lookup('file','{{ role_path }}/files/vra_ha_pair.json') }}"
+    headers:
+      # Accept: "application/json"
+      Content-Type: "application/json"
+      Authorization: "Bearer {{vra_token}}"
+    return_content: yes
+    body_format: json
+    status_code: [201, 202, 200]
+    validate_certs: no
+  register: VRA_output
 
-  - name: "REST call to VRA to onboard BIG-IPs"
-    uri:
-      url: "https://{{inventory_hostname}}/{{ VRAuri }}"
-      method: POST
-      body: "{{ lookup('file','{{ role_path }}/files/vra_ha_pair.json') }}"      
-      headers:
-        # Accept: "application/json"
-        Content-Type: "application/json"
-        Authorization: "Bearer {{vra_token}}" 
-      return_content: yes
-      body_format: json
-      status_code: [201,202,200]
-      validate_certs: no
-    register: VRA_output
+- name: Get the id for the deployment
+  set_fact:
+    deployment_task_id: "{{VRA_output.json.id}}"
 
-  - name: Get the id for the deployment
-    set_fact:
-      deployment_task_id: "{{VRA_output.json.id}}"
-
-  - name: "Verify the status of the task"
-    uri:
-      url: "https://{{inventory_hostname}}/{{ VRAtaskuri }}/{{deployment_task_id}}"
-      method: GET
-      return_content: yes
-      status_code: [200, 202]
-      headers:      
-        Authorization: "Bearer {{vra_token}}" 
-      validate_certs: no
-    register: VRA_task_check
-    until: VRA_task_check.json.state == 'SUCCESSFUL'
-    retries: 50
-    delay: 30
+- name: "Verify the status of the task"
+  uri:
+    url: "https://{{inventory_hostname}}/{{ VRAtaskuri }}/{{deployment_task_id}}"
+    method: GET
+    return_content: yes
+    status_code: [200, 202]
+    headers:
+      Authorization: "Bearer {{vra_token}}"
+    validate_certs: no
+  register: VRA_task_check
+  until: VRA_task_check.json.state == 'SUCCESSFUL'
+  retries: 50
+  delay: 30

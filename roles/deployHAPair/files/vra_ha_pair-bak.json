@@ -1,12 +1,12 @@
 {
     "type": "com.vmware.vcac.catalog.domain.request.CatalogItemProvisioningRequest",
-    "catalogItemId": "{{consumer-catalog-item-guid}}",
-    "requestedFor": "{{username@domain}}",
-    "businessGroupId": "{{subtenant-guid}}",
+    "catalogItemId": "09bb2712-c8da-462b-ae45-1d96e9391302",
+    "requestedFor": "sov_admin@vsphere.local",
+    "businessGroupId": "c41fbd68-a0a0-4522-b520-03e2f51494f6",
     "description": null,
     "reasons": null,
     "data": {
-        "DataCenter": "{{DataCenter}}",
+        "DataCenter": "virtualDataCenter",
         "F5_appliance": {
             "componentTypeId": "com.vmware.csp.component.cafe.composition",
             "componentId": null,
