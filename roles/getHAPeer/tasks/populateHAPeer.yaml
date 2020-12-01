@@ -10,8 +10,3 @@
     ha_peer_ip: "{{ item.value }}"
   when: inventory_hostname_short not in item.key
   with_dict: "{{ ha_ips_from_file }}"
-
-- name: "Share these variables across playbooks"
-  set_stats:
-    data:
-      ha_peer_ip: "{{ ha_peer_ip }}"
