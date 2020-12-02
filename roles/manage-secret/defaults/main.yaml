@@ -9,6 +9,7 @@ ipam_username: admin
 bigiq: 10.254.29.123
 
 bigiq_user: admin
+lic_pool: F5-BIG-VE-BT-1G-V16-LIC
 
 ipam_password: "{{ vault_ipam_password }}"
 
