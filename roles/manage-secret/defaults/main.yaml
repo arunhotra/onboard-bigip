@@ -22,3 +22,11 @@ bigip_password: "{{ vault_bigip_password }}"
 bigiq_pass: "{{ vault_bigiq_password }}"
 
 VRA_password: "{{ vault_VRA_password }}"
+
+catalog_map:
+  v15: "09bb2712-c8da-462b-ae45-1d96e9391302"
+  v16: "0e35cb82-bc35-49dd-a790-40b6d9561157"
+
+type_filter_map:
+  v15: "f5SovlabsHaPair"
+  v16: "f5SovlabsHaPairv16"
