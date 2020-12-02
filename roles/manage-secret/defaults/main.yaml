@@ -1,0 +1,17 @@
+---
+bigip_username: admin
+bigip_port: 443
+validate_certs: no
+
+ipam_hostname: ipam.example1.com
+ipam_username: admin
+
+bigiq: 10.254.29.123
+
+bigiq_user: admin
+
+ipam_password: "{{ vault_ipam_password }}"
+
+bigip_password: "{{ vault_bigip_password }}"
+
+bigiq_pass: "{{ vault_bigiq_password }}"
