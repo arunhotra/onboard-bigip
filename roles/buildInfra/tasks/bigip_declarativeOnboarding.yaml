@@ -35,10 +35,10 @@
   tags:
     - buildInfra
 
-- name: Delay checking BIG-IP for 30 seconds allowing DO declaration to process
+- name: Delay checking BIG-IP for 120 seconds allowing DO declaration to process
   bigip_wait:
     timeout: 600
-    delay: 30
+    delay: 120
     provider: "{{ provider }}"
   # with_dict: "{{device_vars}}"
   tags:
@@ -55,6 +55,7 @@
     force_basic_auth: yes
     validate_certs: no
   register: DO_task_check
+  ignore_unreachable: yes
   until: DO_task_check.json.result.message.find("success") != -1
   retries: 40
   delay: 15
