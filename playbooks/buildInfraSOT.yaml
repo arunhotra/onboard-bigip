@@ -5,6 +5,7 @@
   gather_facts: yes
 
   roles:
+    - manage-secret
     - getHAPeer
     - getFloats
     - mapIP
