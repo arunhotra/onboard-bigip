@@ -11,8 +11,14 @@ bigiq: 10.254.29.123
 bigiq_user: admin
 lic_pool: F5-BIG-VE-BT-1G-V16-LIC
 
+VRA_username: sov_admin
+
+VRA_tenant: vsphere.local
+
 ipam_password: "{{ vault_ipam_password }}"
 
 bigip_password: "{{ vault_bigip_password }}"
 
 bigiq_pass: "{{ vault_bigiq_password }}"
+
+VRA_password: "{{ vault_VRA_password }}"
