@@ -7,6 +7,7 @@
     "reasons": null,
     "data": {
         "DataCenter": "virtualDataCenter",
+        "twrInvGroup": "test1__test2"
         "F5_appliance": {
             "componentTypeId": "com.vmware.csp.component.cafe.composition",
             "componentId": null,
