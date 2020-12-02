@@ -7,14 +7,14 @@
     "reasons": null,
     "data": {
         "DataCenter": "virtualDataCenter",
-        "twrInvGroup": "test1__test2"
+        "twrInvGroup": "test1_test2_v16",
         "F5_appliance": {
             "componentTypeId": "com.vmware.csp.component.cafe.composition",
             "componentId": null,
             "classId": "Blueprint.Component.Declaration",
             "typeFilter": "f5SovlabsHaPairv16*F5_appliance",
             "data": {
-                "Hostname": "test1"
+                "Hostname": "test1-v16"
             }
         },
         "F5_appliance2": {
@@ -23,7 +23,7 @@
             "classId": "Blueprint.Component.Declaration",
             "typeFilter": "f5SovlabsHaPairv16*F5_appliance2",
             "data": {
-                "Hostname": "test2"
+                "Hostname": "test2-v16"
             }
         },
         "_leaseDays": null,

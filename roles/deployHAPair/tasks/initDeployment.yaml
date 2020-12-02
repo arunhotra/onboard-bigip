@@ -24,6 +24,13 @@
     src: "vra_ha_pair.j2"
     dest: "{{ role_path}}/files/vra_ha_pair.json"
 
+- name: Build the Vra uri
+  set_fact:
+    VRAuri: "catalog-service/api/consumer/entitledCatalogItems/{{ catalog_item_id }}/requests?businessGroupId={{ business_group_id }}&requestedFor={{ requestedFor }}"
+
+- debug:
+    msg: "{{ VRAuri }}"
+
 - debug:
     msg: "{{ lookup('file','{{ role_path }}/files/vra_ha_pair.json') }}"
 
