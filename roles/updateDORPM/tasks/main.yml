@@ -2,6 +2,14 @@
   tags:
     - updateDORPM
 
+- import_tasks: getIntentData.yaml
+  tags:
+    - updateDORPM
+
+- import_tasks: cleanIntentData.yaml
+  tags:
+    - updateDORPM
+
 - import_tasks: update_rpms.yaml
   tags:
     - updateDORPM
