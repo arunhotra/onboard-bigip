@@ -36,6 +36,7 @@
     force_basic_auth: yes
     validate_certs: no
   register: AS3_task_check
-  until: AS3_task_check.json.results[0].message.find("success") != -1
+  # until: AS3_task_check.json.results[0].message.find("success") != -1
+  until: AS3_task_check.json.results[0].message.find("in progress") == -1
   retries: 40
   delay: 15
