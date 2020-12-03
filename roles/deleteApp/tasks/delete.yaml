@@ -5,49 +5,40 @@
 #     state: absent
 #     provider: "{{ provider }}"
 
+- name: "REST call AS3 declaration to BIG-IPs for deletion of app {{ appType }}"
+  uri:
+    url: "https://{{inventory_hostname}}:{{bigip_port}}/{{ as3uri }}/{{tenantName}}?async=true"
+    method: DELETE
+    return_content: yes
+    body_format: json
+    status_code: [202, 200]
+    url_username: "{{bigip_username}}"
+    url_password: "{{bigip_password}}"
+    force_basic_auth: yes
+    validate_certs: no
+  register: AppDelete_output
 
-  - name: "REST call AS3 declaration to BIG-IPs for deletion of app {{ appType }}"
-    uri:
-      url: "https://{{inventory_hostname}}:{{bigip_port}}/{{ as3uri }}/t_{{ appType }}?async=true"
-      method: DELETE
-      return_content: yes
-      body_format: json
-      status_code: [202,200]
-      url_username: "{{bigip_username}}"
-      url_password: "{{bigip_password}}"
-      force_basic_auth: yes
-      validate_certs: no
-    register: AppDelete_output
+- name: Creating AS3 task variable for subsequent tasks
+  set_fact:
+    id: "{{AppDelete_output.json.id}}"
 
+# - name: Delay checking BIG-IP for 30 seconds allowing AS3 declaration to process
+#   bigip_wait:
+#     timeout: 600
+#     delay: 30
+#     provider: "{{ provider }}"
 
-
-
-  - name: Creating AS3 task variable for subsequent tasks 
-    set_fact:
-      id: "{{AppDelete_output.json.id}}"
-
-
-
-  - name: Delay checking BIG-IP for 30 seconds allowing AS3 declaration to process
-    bigip_wait:
-      timeout: 600
-      delay: 30
-      provider: "{{ provider }}"
-
-
-
-  - name: "REST to check for Successfull AS3 Declaration "
-    uri:
-      url: "https://{{inventory_hostname}}:{{bigip_port}}/{{taskuri}}/{{id}}"
-      method: GET
-      return_content: yes
-      status_code: [200, 202]
-      url_username: "{{bigip_username}}"
-      url_password: "{{bigip_password}}"
-      force_basic_auth: yes
-      validate_certs: no
-    register: AppDelete_task_check
-    until: AppDelete_task_check.json.results[0].message.find("success") != -1
-    retries: 40
-    delay: 15
-
+- name: "REST to check for Successfull AS3 Declaration "
+  uri:
+    url: "https://{{inventory_hostname}}:{{bigip_port}}/{{taskuri}}/{{id}}"
+    method: GET
+    return_content: yes
+    status_code: [200, 202]
+    url_username: "{{bigip_username}}"
+    url_password: "{{bigip_password}}"
+    force_basic_auth: yes
+    validate_certs: no
+  register: AppDelete_task_check
+  until: AppDelete_task_check.json.results[0].message.find("success") != -1
+  retries: 40
+  delay: 15

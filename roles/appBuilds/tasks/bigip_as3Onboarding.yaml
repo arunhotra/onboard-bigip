@@ -1,0 +1,41 @@
+---
+- name: URI POST Tenant
+  uri:
+    url: "https://{{inventory_hostname}}:{{bigip_port}}/mgmt/shared/appsvcs/declare?async=true"
+    method: POST
+    user: "{{bigip_username}}"
+    password: "{{bigip_password}}"
+    validate_certs: no
+    status_code: [200, 202]
+    body: "{{ lookup('template', '{{role_path}}/templates/template_as3_base.j2') }}"
+    body_format: json
+  register: AS3_output
+
+# - name: AS3 declaration
+#   debug:
+#     msg: "{{AS3_ouput}}"
+
+- name: Creating AS3 task variable for subsequent tasks
+  set_fact:
+    id: "{{AS3_output.json.id}}"
+
+# - name: Delay checking BIG-IP for 30 seconds allowing AS3 declaration to process
+#   bigip_wait:
+#     timeout: 600
+#     delay: 30
+#     provider: "{{ provider }}"
+
+- name: "REST to check for Successfull AS3 Declaration "
+  uri:
+    url: "https://{{inventory_hostname}}:{{bigip_port}}/{{taskuri}}/{{id}}"
+    method: GET
+    return_content: yes
+    status_code: [200, 202]
+    url_username: "{{bigip_username}}"
+    url_password: "{{bigip_password}}"
+    force_basic_auth: yes
+    validate_certs: no
+  register: AS3_task_check
+  until: AS3_task_check.json.results[0].message.find("success") != -1
+  retries: 40
+  delay: 15

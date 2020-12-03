@@ -1,11 +1,12 @@
-
-
-
 - import_tasks: build_provider.yaml
   tags:
     - buildApp
 
 - import_tasks: populate_status.yaml
+  tags:
+    - buildApp
+
+- import_tasks: populate_appData.yaml
   tags:
     - buildApp
 
@@ -37,4 +38,3 @@
   when: active_host == True
   tags:
     - buildApp
-
