@@ -1,0 +1,12 @@
+---
+- name: BIG IP App Delete
+  hosts: "{{bigip1_hostname}}_{{bigip2_hostname}}_{{ version }}"
+  connection: local
+  gather_facts: no
+
+  # collections:
+  #   - f5networks.f5_modules
+
+  roles:
+    - manage-secret
+    - deleteTenant

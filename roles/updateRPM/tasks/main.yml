@@ -1,0 +1,7 @@
+- import_tasks: build_provider.yaml
+  tags:
+    - buildInfra
+
+- import_tasks: bigip_update_rpms.yaml
+  tags:
+    - buildInfra

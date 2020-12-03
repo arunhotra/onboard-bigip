@@ -1,0 +1,8 @@
+---
+- name: Wait a maximum of 30 seconds for BIG-IP to be ready to take configuration
+  bigip_wait:
+    timeout: 30
+    provider: "{{ provider }}"
+
+  tags:
+    - buildInfra

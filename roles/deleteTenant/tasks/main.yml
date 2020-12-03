@@ -1,0 +1,13 @@
+---
+- include_tasks: build_provider.yaml
+  tags:
+    - deleteApp
+
+- include_tasks: populate_status.yaml
+  tags:
+    - deleteApp
+
+- include_tasks: delete.yaml
+  when: active_host == True
+  tags:
+    - deleteApp
