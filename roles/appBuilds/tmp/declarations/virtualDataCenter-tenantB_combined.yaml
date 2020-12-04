@@ -4,7 +4,7 @@
     "serviceMain": {
         "class": "Service_HTTP",
         "virtualAddresses": [
-            "10.30.10.1"
+            "10.30.10.7"
         ],
         "pool": "app3_pool"
     },

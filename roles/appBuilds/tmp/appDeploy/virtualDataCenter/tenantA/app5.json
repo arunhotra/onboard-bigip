@@ -1,23 +1,23 @@
-"{{item.value.app_name}}": {
+"app5": {
     "class": "Application",
     "template": "http",
     "serviceMain": {
         "class": "Service_HTTP",
         "virtualAddresses": [
-            "{{item.value.app_locations.prod_vip_address}}"
+            "10.10.10.5"
         ],
-        "pool": "{{item.value.app_name}}_pool"
+        "pool": "app5_pool"
     },
-    "{{item.value.app_name}}_pool": {
+    "app5_pool": {
         "class": "Pool",
         "monitors": [
             "http"
         ],
         "members": [
             {
-                "servicePort": {{item.value.server_port}},
+                "servicePort": 8001,
                 "serverAddresses": [
-                    "{{ item.value.app_locations.pool_members| join('", "') }}"
+                    "10.10.15.1", "10.10.15.2"
                 ]
             }
         ]
