@@ -3,7 +3,7 @@
     "template": "http",
     "serviceMain": {
         "class": "Service_HTTP",
-        {% if upgrade is defined %}
+        {% if upgrade is not defined %}
         "virtualAddresses": [
             "{{item.value.app_locations.prod_vip_address}}"
         ],
