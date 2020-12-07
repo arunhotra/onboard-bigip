@@ -12,9 +12,9 @@
             "{{item.value.app_locations.alternate_vip_address}}"
         ],
         {% endif %}
-        "pool": "{{item.value.app_name}}_pool"
+        "pool": "{{item.value.app_fqdn}}_pool"
     },
-    "{{item.value.app_name}}_pool": {
+    "{{item.value.app_fqdn}}_pool": {
         "class": "Pool",
         "monitors": [
             "http"
