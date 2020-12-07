@@ -18,7 +18,7 @@
   with_dict: "{{ apps }}"
   loop_control:
     label: "{{item.key}}"
-  when: not upgrade
+  when: upgrade is not defined
 
 - name: Map in DNS "{{ item.value.app_fqdn }}" to IP "{{ item.value.app_locations.alternate_vip_address }}"
   nios_a_record:
