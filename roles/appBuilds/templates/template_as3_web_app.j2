@@ -1,7 +1,7 @@
 "{{item.value.app_name}}": {
     "class": "Application",
     "template": "generic",
-    "{{item.value.app_name}}_vs": {
+    "{{item.value.app_fqdn}}_vs": {
         "class": "Service_HTTP",
         {% if upgrade is not defined %}
         "virtualAddresses": [
