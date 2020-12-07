@@ -1,7 +1,7 @@
 "{{item.value.app_name}}": {
     "class": "Application",
     "template": "generic",
-    "{{item.value.app_name}}_{{item.value.app_unique_id}}_vs": {
+    "{{item.value.app_name}}_{{item.value.app_unique_ID}}_vs": {
         "class": "Service_HTTP",
         {% if upgrade is not defined %}
         "virtualAddresses": [
@@ -12,9 +12,9 @@
             "{{item.value.app_locations.alternate_vip_address}}"
         ],
         {% endif %}
-        "pool": "{{item.value.app_name}}_{{item.value.app_unique_id}}_pool"
+        "pool": "{{item.value.app_name}}_{{item.value.app_unique_ID}}_pool"
     },
-    "{{item.value.app_name}}_{{item.value.app_unique_id}}_pool": {
+    "{{item.value.app_name}}_{{item.value.app_unique_ID}}_pool": {
         "class": "Pool",
         "monitors": [
             "http"
