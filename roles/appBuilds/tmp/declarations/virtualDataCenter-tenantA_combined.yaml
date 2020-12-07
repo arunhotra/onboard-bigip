@@ -3,10 +3,10 @@
     "template": "http",
     "serviceMain": {
         "class": "Service_HTTP",
-        "virtualAddresses": [
-            "10.10.10.1"
+                "virtualAddresses": [
+            "10.254.29.122"
         ],
-        "pool": "app1_pool"
+                "pool": "app1_pool"
     },
     "app1_pool": {
         "class": "Pool",
@@ -24,41 +24,15 @@
     }
 }
 ,
-"app2": {
-    "class": "Application",
-    "template": "http",
-    "serviceMain": {
-        "class": "Service_HTTP",
-        "virtualAddresses": [
-            "10.20.10.1"
-        ],
-        "pool": "app2_pool"
-    },
-    "app2_pool": {
-        "class": "Pool",
-        "monitors": [
-            "http"
-        ],
-        "members": [
-            {
-                "servicePort": 8001,
-                "serverAddresses": [
-                    "10.20.11.1", "10.20.11.2"
-                ]
-            }
-        ]
-    }
-}
-,
 "app5": {
     "class": "Application",
     "template": "http",
     "serviceMain": {
         "class": "Service_HTTP",
-        "virtualAddresses": [
-            "10.10.10.5"
+                "virtualAddresses": [
+            "10.254.29.123"
         ],
-        "pool": "app5_pool"
+                "pool": "app5_pool"
     },
     "app5_pool": {
         "class": "Pool",

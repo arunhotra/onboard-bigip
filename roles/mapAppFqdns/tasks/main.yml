@@ -1,0 +1,9 @@
+- import_tasks: build_ipam_provider.yaml
+  # run_once: true
+  tags:
+    - buildApp
+
+- import_tasks: map_app_fqdns.yaml
+  # run_once: true
+  tags:
+    - buildApp

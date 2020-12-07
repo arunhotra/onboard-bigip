@@ -1,0 +1,21 @@
+- name: Compare the current and old pool statuses
+  shell: diff current_status.json new_status.json
+  args:
+    chdir: "../tmp"
+  register: diff_output
+
+- debug:
+    msg: "{{ diff_output }}"
+
+- name: Set the success variable to true based on the tests
+  set_fact:
+    test_success: true
+  when: diff_output.rc == 0
+
+- debug:
+    msg: "{{ test_success }}"
+
+- name: Share these variables across playbooks
+  set_stats:
+    data:
+      test_success: "{{ test_success }}"

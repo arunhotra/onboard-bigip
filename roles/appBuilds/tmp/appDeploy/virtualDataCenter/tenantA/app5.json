@@ -3,10 +3,10 @@
     "template": "http",
     "serviceMain": {
         "class": "Service_HTTP",
-        "virtualAddresses": [
-            "10.10.10.5"
+                "virtualAddresses": [
+            "10.254.29.123"
         ],
-        "pool": "app5_pool"
+                "pool": "app5_pool"
     },
     "app5_pool": {
         "class": "Pool",
