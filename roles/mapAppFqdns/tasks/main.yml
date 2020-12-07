@@ -1,3 +1,14 @@
+- import_tasks: cleanup_temp_directories.yaml
+  tags:
+    - buildApp
+
+- import_tasks: clone_app_repo.yaml
+  tags:
+    - buildApp
+- import_tasks: bigip_appIntentData_get.yaml
+  tags:
+    - buildApp
+
 - import_tasks: build_ipam_provider.yaml
   # run_once: true
   tags:
