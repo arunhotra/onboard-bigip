@@ -1,0 +1,15 @@
+---
+- name: Checking if any temporary files exist prior to cleanup
+  stat: path=../tmp
+  register: temp_directory
+
+- name: Cleaning up temporary directories prior to getting intent data
+  file:
+    path: "../tmp"
+    state: absent
+  when: temp_directory.stat.exists
+
+- name: Create Directory tmp for storing files to compare
+  file:
+    path: "../tmp"
+    state: directory

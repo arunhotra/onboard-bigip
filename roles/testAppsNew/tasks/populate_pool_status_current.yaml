@@ -18,4 +18,4 @@
 - name: Copy output to file
   copy:
     content: "{{ pool_statuses }}"
-    dest: "{{role_path}}/tmp/new_status.json"
+    dest: "../tmp/new_status.json"
