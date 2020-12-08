@@ -38,7 +38,7 @@
 - name: Delay checking BIG-IP for 120 seconds allowing DO declaration to process
   bigip_wait:
     timeout: 600
-    delay: 120
+    delay: 150
     provider: "{{ provider }}"
   # with_dict: "{{device_vars}}"
   tags:
