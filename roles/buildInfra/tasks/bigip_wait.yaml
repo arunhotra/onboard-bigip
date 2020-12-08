@@ -1,8 +1,8 @@
 ---
-- name: Wait a maximum of 30 seconds for BIG-IP to be ready to take configuration
+- name: Wait a maximum of 120 seconds for BIG-IP to be ready to take configuration
   bigip_wait:
     delay: 5
-    timeout: 30
+    timeout: 120
     provider: "{{ provider }}"
 
   tags:
