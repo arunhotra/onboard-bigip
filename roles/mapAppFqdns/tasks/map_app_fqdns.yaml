@@ -1,14 +1,3 @@
-# - name: Map in DNS "{{ item.value.app_fqdn }}" to IP "{{ item.value.app_locations.prod_vip_address }}"
-#   nios_host_record:
-#     name: "{{item.value.app_fqdn}}"
-#     ipv4:
-#       - address: "{{ item.value.app_locations.prod_vip_address }}"
-#     state: present
-#     provider: "{{nios_provider}}"
-#   with_dict: "{{ apps }}"
-#   loop_control:
-#     label: "{{item.key}}"
-
 - name: Map in DNS "{{ item.value.app_fqdn }}" to IP "{{ item.value.app_locations.prod_vip_address }}"
   nios_a_record:
     name: "{{item.value.app_fqdn}}"
@@ -19,6 +8,8 @@
   loop_control:
     label: "{{item.key}}"
   when: upgrade is not defined
+  tags:
+    - mapAppFqdns
 
 - name: Map in DNS "{{ item.value.app_fqdn }}" to IP "{{ item.value.app_locations.alternate_vip_address }}"
   nios_a_record:
@@ -30,6 +21,8 @@
   loop_control:
     label: "{{item.key}}"
   when: upgrade is defined and test_success
+  tags:
+    - mapAppFqdns
 
 - name: Removing the Map in DNS "{{ item.value.app_fqdn }}" to IP "{{ item.value.app_locations.prod_vip_address }}"
   nios_a_record:
@@ -41,3 +34,5 @@
   loop_control:
     label: "{{item.key}}"
   when: upgrade is defined and test_success
+  tags:
+    - mapAppFqdns

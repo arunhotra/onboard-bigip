@@ -3,7 +3,7 @@
   stat: path={{role_path}}/tmp
   register: temp_directory
   tags:
-    - buildApp
+    - mapAppFqdns
 
 - name: Cleaning up temporary directories prior to getting intent data
   file:
@@ -12,4 +12,4 @@
   when: temp_directory.stat.exists
   run_once: true
   tags:
-    - buildApp
+    - mapAppFqdns
