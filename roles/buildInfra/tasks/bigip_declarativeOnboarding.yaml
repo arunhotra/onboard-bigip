@@ -7,8 +7,8 @@
     - buildInfra
 
 - name: Log the DO delcaration into the logs
-  file:
-    src: "{{ lookup(''template'',''{{ role_path }}/templates/template_DO_declaration_BIG-IP-IQ.j2'') }}"
+  template:
+    src: "template_DO_declaration_BIG-IP-IQ.j2"
     dest: "../logs/infraLogs/{{inventory_hostname}}_{{version}}.json"
   tags:
     - buildInfra

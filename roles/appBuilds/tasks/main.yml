@@ -1,7 +1,3 @@
-- import_tasks: init.yaml
-  tags:
-    - buildApp
-
 - import_tasks: build_provider.yaml
   tags:
     - buildApp
@@ -17,15 +13,8 @@
 - import_tasks: clone_app_repo.yaml
   tags:
     - buildApp
+
 - import_tasks: bigip_appIntentData_get.yaml
-  tags:
-    - buildApp
-
-# - import_tasks: bigip_wait.yaml
-#   tags:
-#     - buildApp
-
-- import_tasks: bigip_as3_rpms.yaml
   tags:
     - buildApp
 
@@ -41,23 +30,3 @@
   when: active_host == True
   tags:
     - buildApp
-# - include_tasks: test_apps.yaml
-#   with_dict: "{{ apps }}"
-#   loop_control:
-#     label: "{{item.key}}"
-#   when: active_host == True and upgrade
-#   tags:
-#     - buildApp
-# - import_tasks: populate_test_status.yaml
-#   when: active_host == True and upgrade
-#   tags:
-#     - buildApp
-# - import_tasks: build_ipam_provider.yaml
-#   run_once: true
-#   tags:
-#     - buildApp
-
-# - import_tasks: map_app_fqdns.yaml
-#   run_once: true
-#   tags:
-#     - buildApp

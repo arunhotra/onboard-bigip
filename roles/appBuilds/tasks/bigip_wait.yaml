@@ -4,3 +4,5 @@
     delay: 10
     timeout: 300
     provider: "{{ provider }}"
+  tags:
+    - buildApp

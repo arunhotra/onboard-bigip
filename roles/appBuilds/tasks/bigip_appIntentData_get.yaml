@@ -1,9 +1,11 @@
 ---
-- name: load vars from file
+- name: load vars from files downloaded from the App repository
   include_vars:
     files_matching: .yaml
     dir: "{{role_path}}/tmp/app-inputs"
     name: apps
+  tags:
+    - buildApp
 
 - name: Create Directory Structure for Site/Tenant
   file:
@@ -12,8 +14,10 @@
   with_dict: "{{apps}}"
   loop_control:
     label: "{{item}}"
+  tags:
+    - buildApp
 
-- name: Create App AS3 json blob file(s)
+- name: Create App AS3 json blob file(s) for each app
   template:
     src: "{{role_path}}/templates/{{item.value.app_template}}.j2"
     dest: "{{role_path}}/tmp/appDeploy/{{item.value.app_locations.datacenter_name}}/{{item.value.tenant}}/{{item.value.app_name}}.json"
@@ -21,11 +25,15 @@
   with_dict: "{{ apps }}"
   loop_control:
     label: "{{item.key}}"
+  tags:
+    - buildApp
 
 - name: Create tmp Directory for Declarations
   file:
     path: "{{role_path}}/tmp/declarations"
     state: directory
+  tags:
+    - buildApp
 
 - name: Group all Application Files
   assemble:
@@ -36,7 +44,11 @@
   with_dict: "{{apps}}"
   loop_control:
     label: "{{item}}"
+  tags:
+    - buildApp
 
 - name: Retrive AS3 files to push
   command: "ls {{role_path}}/tmp/declarations/"
   register: dir_out
+  tags:
+    - buildApp

@@ -1,5 +1,5 @@
 ---
-- name: URI POST Tenant
+- name: POST the AS3 declaration to the BIG-IP
   uri:
     url: "https://{{inventory_hostname}}:{{bigip_port}}/mgmt/shared/appsvcs/declare?async=true"
     method: POST
@@ -10,14 +10,14 @@
     body: "{{ lookup('template', '{{role_path}}/templates/template_as3_base.j2') }}"
     body_format: json
   register: AS3_output
-
-# - name: AS3 declaration
-#   debug:
-#     msg: "{{AS3_ouput}}"
+  tags:
+    - buildApp
 
 - name: Creating AS3 task variable for subsequent tasks
   set_fact:
     id: "{{AS3_output.json.id}}"
+  tags:
+    - buildApp
 
 # - name: Delay checking BIG-IP for 30 seconds allowing AS3 declaration to process
 #   bigip_wait:
@@ -25,7 +25,7 @@
 #     delay: 30
 #     provider: "{{ provider }}"
 
-- name: "REST to check for Successfull AS3 Declaration "
+- name: REST Call to check for the status of AS3 Declaration
   uri:
     url: "https://{{inventory_hostname}}:{{bigip_port}}/{{taskuri}}/{{id}}"
     method: GET
@@ -40,3 +40,5 @@
   until: AS3_task_check.json.results[0].message.find("in progress") == -1
   retries: 40
   delay: 15
+  tags:
+    - buildApp
