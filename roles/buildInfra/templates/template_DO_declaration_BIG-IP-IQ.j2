@@ -86,6 +86,22 @@
                 ],
             "vlan": "{{device_vars.base.externalIp.vlan}}"
         },
+        "{{device_vars.base.externalFloatIp.name}}": {
+            "class": "SelfIp",
+            "address": "{{device_vars.base.externalFloatIp.ip}}{{device_vars.base.externalFloatIp.cidr}}",
+            "allowService": [
+                "tcp:161",
+                "udp:161",
+                "tcp:22",
+                "tcp:4353",
+                "udp:4353",
+                "udp:1026",
+                "tcp:443",
+                "tcp:179"
+                ],
+            "vlan": "{{device_vars.base.externalFloatIp.vlan}}",
+            "trafficGroup": "traffic-group-1"
+        },
         "{{device_vars.base.internalRedIp.name}}": {
             "class": "SelfIp",
             "address": "{{device_vars.base.internalRedIp.ip}}{{device_vars.base.internalRedIp.cidr}}",
@@ -101,7 +117,22 @@
                 ],
             "vlan": "{{device_vars.base.internalRedIp.vlan}}"
         },
-
+        "{{device_vars.base.internalRedFloatIp.name}}": {
+            "class": "SelfIp",
+            "address": "{{device_vars.base.internalRedFloatIp.ip}}{{device_vars.base.internalRedFloatIp.cidr}}",
+            "allowService": [
+                "tcp:161",
+                "udp:161",
+                "tcp:22",
+                "tcp:4353",
+                "udp:4353",
+                "udp:1026",
+                "tcp:443",
+                "tcp:179"
+                ],
+            "vlan": "{{device_vars.base.internalRedFloatIp.vlan}}",
+            "trafficGroup": "traffic-group-1"
+        },
       
         "{{device_vars.base.haIp.name}}": {
             "class": "SelfIp",

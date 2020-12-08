@@ -19,7 +19,7 @@
     type_filter: "{{ type_filter_map.v16 }}"
   when: version == 'v16'
 
-- name: Fill out template for posting to VRA
+- name: Fill out template and populate JSON for posting to VRA
   template:
     src: "vra_ha_pair.j2"
     dest: "{{ role_path}}/files/vra_ha_pair.json"
@@ -30,11 +30,13 @@
 
 - debug:
     msg: "{{ VRAuri }}"
+    verbosity: 3
 
 - debug:
     msg: "{{ lookup('file','{{ role_path }}/files/vra_ha_pair.json') }}"
+    verbosity: 3
 
-- name: "REST call to VRA to onboard BIG-IPs"
+- name: REST call to VRA to onboard BIG-IPs
   uri:
     url: "https://{{inventory_hostname}}/{{ VRAuri }}"
     method: POST
@@ -49,11 +51,11 @@
     validate_certs: no
   register: VRA_output
 
-- name: Get the id for the deployment
+- name: Get the id for the VRA deployment
   set_fact:
     deployment_task_id: "{{VRA_output.json.id}}"
 
-- name: "Verify the status of the task"
+- name: Verify the status of the task
   uri:
     url: "https://{{inventory_hostname}}/{{ VRAtaskuri }}/{{deployment_task_id}}"
     method: GET
@@ -67,7 +69,7 @@
   retries: 50
   delay: 30
 
-- name: "Share these variables across playbooks"
+- name: Share these variables across playbooks
   set_stats:
     data:
       bigip1_hostname: "{{ bigip1_hostname }}"

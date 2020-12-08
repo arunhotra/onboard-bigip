@@ -1,19 +1,22 @@
 ---
 - name: Print rendered DO declaration
   debug:
-    # msg: '{"DO_declaration": {{ lookup(''template'',''{{ role_path }}/templates/template_DO_declaration_BIG-IP-lic.j2'') }}}'
-    # msg: "{\"DO_declaration\": {{ lookup('template','{{ role_path }}/templates/template_DO_declaration_BIG-IP.j2') }}}"
     msg: '{"DO_declaration": {{ lookup(''template'',''{{ role_path }}/templates/template_DO_declaration_BIG-IP-IQ.j2'') }}}'
-  # with_dict: "{{device_vars}}"
+    verbosity: 3
   tags:
     - buildInfra
 
-- name: "REST call DO declaration to BIG-IPs"
+- name: Log the DO delcaration into the logs
+  file:
+    src: "{{ lookup(''template'',''{{ role_path }}/templates/template_DO_declaration_BIG-IP-IQ.j2'') }}"
+    dest: "../logs/infraLogs/{{inventory_hostname}}_{{version}}.json"
+  tags:
+    - buildInfra
+
+- name: REST call DO declaration to BIG-IPs
   uri:
     url: "https://{{inventory_hostname}}:{{bigip_port}}/mgmt/shared/declarative-onboarding"
     method: POST
-    # body: "{{ lookup('template','{{ role_path }}/templates/template_DO_declaration_BIG-IP-lic.j2') }}"
-    # body: "{{ lookup('template','{{ role_path }}/templates/template_DO_declaration_BIG-IP.j2') }}"
     body: "{{ lookup('template','{{ role_path }}/templates/template_DO_declaration_BIG-IP-IQ.j2') }}"
     headers:
       Content-Type: "application/json"
@@ -25,7 +28,6 @@
     force_basic_auth: yes
     validate_certs: no
   register: DO_output
-  # with_dict: "{{device_vars}}"
   tags:
     - buildInfra
 
@@ -35,16 +37,15 @@
   tags:
     - buildInfra
 
-- name: Delay checking BIG-IP for 120 seconds allowing DO declaration to process
+- name: Delay checking BIG-IP for 150 seconds allowing DO declaration to process
   bigip_wait:
     timeout: 600
     delay: 150
     provider: "{{ provider }}"
-  # with_dict: "{{device_vars}}"
   tags:
     - buildInfra
 
-- name: "REST to check for Successfull DO Declaration to both BIG-IPs"
+- name: REST to check for Successfull DO Declaration to both BIG-IPs
   uri:
     url: "https://{{inventory_hostname}}:{{bigip_port}}/mgmt/shared/declarative-onboarding/task/{{id}}"
     method: GET
@@ -59,3 +60,5 @@
   until: DO_task_check.json.result.message.find("success") != -1
   retries: 40
   delay: 15
+  tags:
+    - buildInfra

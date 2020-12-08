@@ -30,3 +30,6 @@ catalog_map:
 type_filter_map:
   v15: "f5SovlabsHaPair"
   v16: "f5SovlabsHaPairv16"
+
+business_group_id: c41fbd68-a0a0-4522-b520-03e2f51494f6
+requestedFor: sov_admin@vsphere.local

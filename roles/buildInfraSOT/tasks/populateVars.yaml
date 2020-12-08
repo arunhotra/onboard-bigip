@@ -7,7 +7,7 @@
         recurse: yes
       register: foundFiles
 
-    - name: Cleaning up temporary directories prior to getting intent data
+    - name: Cleaning up the repos directory if not empty
       file:
         path: "{{ role_path }}/tmp/repos"
         state: absent
@@ -19,12 +19,12 @@
         accept_hostkey: true
   run_once: true
 
-- name: Poplulate files from template
+- name: Poplulate files from template for generating JSON specific to each BIG-IP
   template:
     src: "bigip.j2"
     dest: "{{role_path}}/tmp/repos/virtualDataCenter/{{inventory_hostname_short}}.json"
 
-- name: Upload the files to the repository
+- name: Push the BIG-IP specific JSON files to the Infrastructure repository
   shell: git config --global user.name "arunganti" ; git config --global user.email "a.ganti@f5.com" ; git add . ; git commit -m "onboarded ha pair" ; git push origin master
   args:
     chdir: "{{role_path}}/tmp/repos"
