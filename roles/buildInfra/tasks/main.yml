@@ -1,11 +1,6 @@
-
-
-
 - import_tasks: build_provider.yaml
   tags:
     - buildInfra
-
-
 
 - import_tasks: cleanup_temp_directories.yaml
   tags:
@@ -31,15 +26,14 @@
   tags:
     - buildInfra
 
-- import_tasks: bigip_declarativeOnboarding.yaml
+- import_tasks: bigip_as3_rpms.yaml
   tags:
     - buildInfra
 
-# - import_tasks: bigip_nonDO_configs.yaml
-#   tags:
-#     - buildInfra
+- import_tasks: bigip_wait.yaml
+  tags:
+    - buildInfra
 
-# - import_tasks: bigip_configure_bgp.yaml
-#   tags:
-#     - buildInfra
-
+- import_tasks: bigip_declarativeOnboarding.yaml
+  tags:
+    - buildInfra
