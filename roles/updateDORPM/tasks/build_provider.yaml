@@ -1,5 +1,5 @@
 ---
-- name: Setup provider
+- name: Setup provider for BIG-IP
   set_fact:
     provider:
       server: "{{inventory_hostname}}"

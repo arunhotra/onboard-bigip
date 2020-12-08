@@ -1,7 +1,7 @@
 - import_tasks: init.yaml
   tags:
-    - buildApp
+    - compareAppStatus
 
 - import_tasks: compare_status.yaml
   tags:
-    - buildApp
+    - compareAppStatus
