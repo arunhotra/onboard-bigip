@@ -4,14 +4,16 @@
       - devices
     provider: "{{ provider }}"
   register: ha_pairs
+  tags:
+    - testAppsNew
 
-
-- name: Initialize active device fact
+- name: Initialize active host fact
   set_fact:
     active_host: False
+  tags:
+    - testAppsNew
 
-
-- name: Set active
+- name: Set active host
   set_fact:
     active_host: True
   when:
@@ -20,7 +22,11 @@
   loop: "{{ ha_pairs.devices }}"
   loop_control:
     loop_var: device
+  tags:
+    - testAppsNew
 
-- name: debug active device fact
+- name: debug active host fact
   debug:
-    var: active_host 
+    var: active_host
+  tags:
+    - testAppsNew

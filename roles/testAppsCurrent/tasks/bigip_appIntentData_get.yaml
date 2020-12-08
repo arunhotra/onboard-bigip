@@ -1,9 +1,11 @@
 ---
-- name: load vars from file
+- name: load application vars from the cloned repository
   include_vars:
     files_matching: .yaml
     dir: "{{role_path}}/tmp/app-inputs"
     name: apps
+  tags:
+    - testAppsCurrent
 
 - name: Create Directory Structure for Site/Tenant
   file:
@@ -12,6 +14,8 @@
   with_dict: "{{apps}}"
   loop_control:
     label: "{{item}}"
+  tags:
+    - testAppsCurrent
 
 - name: Create App AS3 json blob file(s)
   template:
@@ -21,11 +25,15 @@
   with_dict: "{{ apps }}"
   loop_control:
     label: "{{item.key}}"
+  tags:
+    - testAppsCurrent
 
 - name: Create tmp Directory for Declarations
   file:
     path: "{{role_path}}/tmp/declarations"
     state: directory
+  tags:
+    - testAppsCurrent
 
 - name: Group all Application Files
   assemble:
@@ -36,7 +44,11 @@
   with_dict: "{{apps}}"
   loop_control:
     label: "{{item}}"
+  tags:
+    - testAppsCurrent
 
 - name: Retrive AS3 files to push
   command: "ls {{role_path}}/tmp/declarations/"
   register: dir_out
+  tags:
+    - testAppsCurrent

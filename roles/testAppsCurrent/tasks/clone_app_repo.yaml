@@ -11,3 +11,5 @@
         dest: "{{ role_path }}/tmp/app-inputs"
         accept_hostkey: true
   run_once: true
+  tags:
+    - testAppsCurrent
