@@ -6,12 +6,12 @@
   tags:
     - buildInfra
 
-# - name: Log the DO delcaration into the logs
-#   template:
-#     src: "template_DO_declaration_BIG-IP-IQ.j2"
-#     dest: "../logs/infraLogs/{{inventory_hostname}}_{{version}}.json"
-#   tags:
-#     - buildInfra
+- name: Log the DO delcaration into the logs
+  template:
+    src: "template_DO_declaration_BIG-IP-IQ.j2"
+    dest: "../logs/infraLogs/{{inventory_hostname}}_{{version}}.json"
+  tags:
+    - buildInfra
 
 - name: REST call DO declaration to BIG-IPs
   uri:
