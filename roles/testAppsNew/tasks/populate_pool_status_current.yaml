@@ -27,3 +27,10 @@
     dest: "../tmp/new_status.json"
   tags:
     - testAppsNew
+
+- name: Log the pool statuses in the logs
+  copy:
+    src: "../tmp/new_status.json"
+    dest: "/tmp/logs/statusLogs/{{group_names[0]}}_new_status.json"
+  tags:
+    - testAppsNew
