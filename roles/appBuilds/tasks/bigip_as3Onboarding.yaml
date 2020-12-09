@@ -16,7 +16,7 @@
 - name: Log the DO delcaration into the logs
   template:
     src: "template_as3_base.j2"
-    dest: "/tmp/{{inventory_hostname}}_{{version}}_{{outer_item}}.json"
+    dest: "/tmp/logs/appLogs/{{inventory_hostname}}_{{version}}_{{outer_item.split('-')[1].split('_')[0]}}.json"
   tags:
     - buildApp
 
