@@ -6,18 +6,18 @@
   tags:
     - testAppsNew
 
-- import_tasks: cleanup_temp_directories.yaml
-  tags:
-    - testAppsNew
+# - import_tasks: cleanup_temp_directories.yaml
+#   tags:
+#     - testAppsNew
 
-- import_tasks: clone_app_repo.yaml
-  tags:
-    - testAppsNew
-- import_tasks: bigip_appIntentData_get.yaml
-  tags:
-    - testAppsNew
+# - import_tasks: clone_app_repo.yaml
+#   tags:
+#     - testAppsNew
+# - import_tasks: bigip_appIntentData_get.yaml
+#   tags:
+#     - testAppsNew
 
-- import_tasks: populate_pool_status_current.yaml
+- import_tasks: populate_pool_status_new.yaml
   when: active_host == True
   tags:
     - testAppsNew

@@ -1,4 +1,1 @@
-{
-    "app1_pool": "offline",
-    "app5_pool": "offline"
-}
+{"app1.example1.com_pool": "available", "app6.example1.com_pool": "available", "app2.example1.com_pool": "offline", "app3.example1.com_pool": "available", "app4.example1.com_pool": "available", "app5.example1.com_pool": "available"}

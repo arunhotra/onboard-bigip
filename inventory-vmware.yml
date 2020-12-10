@@ -10,10 +10,14 @@ all:
       hosts:
         bigip1-test5.example1.com:
         bigip2-test5.example1.com:
-    bigip1-24_bigip2-24_v15:
+    bigip1-58_bigip2-58_v15:
       hosts:
-        bigip1-24-v15.example1.com:
-        bigip2-24-v15.example1.com:
+        bigip1-58-v15.example1.com:
+        bigip2-58-v15.example1.com:
+    bigip1-58_bigip2-58_v16:
+      hosts:
+        bigip1-58-v16.example1.com:
+        bigip2-58-v16.example1.com:
     virtualDataCenterGTM:
       hosts:
         bigipG.example1.com:
