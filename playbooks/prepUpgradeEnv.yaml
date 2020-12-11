@@ -5,5 +5,4 @@
   gather_facts: no
 
   roles:
-    - manage-secret
     - prepUpgradeEnv
