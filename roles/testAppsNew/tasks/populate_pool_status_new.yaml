@@ -35,7 +35,7 @@
 
 - name: Log the pool statuses in the logs
   copy:
-    src: "{{pool_statuses_new}}"
+    content: "{{pool_statuses_new}}"
     dest: "/tmp/logs/statusLogs/{{group_names[0]}}_new_status.json"
   tags:
     - testAppsNew

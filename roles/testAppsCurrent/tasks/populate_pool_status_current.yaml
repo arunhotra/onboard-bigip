@@ -37,7 +37,7 @@
 
 - name: Log the pool statuses in the logs
   copy:
-    src: "{{pool_statuses_current}}"
+    content: "{{pool_statuses_current}}"
     dest: "/tmp/logs/statusLogs/{{group_names[0]}}_current_status.json"
   tags:
     - testAppsCurrent
