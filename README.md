@@ -3,7 +3,7 @@
 
 ## Purpose
 
-This repo does the DO and AS3 provisioning and uses a dynamically built inventory (by vRA - but it could be from AWS or any other cloud as well )
+This repo does the DO and AS3 provisioning and uses a dynamically built inventory (by vRA - but it could be from AWS or any other cloud as well)
 
 ## Pre-req's
 
