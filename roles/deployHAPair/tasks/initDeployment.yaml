@@ -19,10 +19,17 @@
     type_filter: "{{ type_filter_map.v16 }}"
   when: version == 'v16'
 
-- name: Fill out template and populate JSON for posting to VRA
-  template:
-    src: "vra_ha_pair.j2"
-    dest: "{{ role_path}}/files/vra_ha_pair.json"
+##############  Template for vsphere.local tenant ###########
+# - name: Fill out template and populate JSON for posting to VRA
+#   template:
+#     src: "vra_ha_pair.j2"
+#     dest: "{{ role_path}}/files/vra_ha_pair.json"
+
+##############  Template for f5 tenant ###########
+ - name: Fill out template and populate JSON for posting to VRA
+   template:
+     src: "vra_ha_pair.j2"
+     dest: "{{ role_path}}/files/vra_ha_pair_f5Tenant.json"
 
 - name: Build the Vra uri
   set_fact:
@@ -69,10 +76,10 @@
   retries: 50
   delay: 30
 
-- name: Share these variables across playbooks
-  set_stats:
-    data:
-      bigip1_hostname: "{{ bigip1_hostname }}"
-      bigip2_hostname: "{{ bigip2_hostname }}"
-      version: "{{ version }}"
-  run_once: true
+# - name: Share these variables across playbooks
+#   set_stats:
+#     data:
+#       bigip1_hostname: "{{ bigip1_hostname }}"
+#       bigip2_hostname: "{{ bigip2_hostname }}"
+#       version: "{{ version }}"
+#   run_once: true
