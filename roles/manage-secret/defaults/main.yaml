@@ -48,7 +48,7 @@ catalog_map:
   v16: "46bf0a77-faa9-4465-bb56-c91937db3198"
 
 type_filter_map:
-  v15: "BIGIPHAPair_v15"
+  v15: "BIGIPHAPair"
   v16: "BIGIPHAPair_v16"
 
 business_group_id: 7641c8bd-32d1-4e57-acd2-61a21ea759fa
