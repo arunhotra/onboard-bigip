@@ -42,14 +42,14 @@
 
 - name: debug
   debug:
-    msg: "{{ lookup('file','{{ role_path }}/files/vra_ha_pair.json') }}"
+    msg: "{{ lookup('file','{{ role_path }}/files/vra_ha_pair_f5Tenant.json') }}"
     verbosity: 3
 
 - name: REST call to VRA to onboard BIG-IPs
   uri:
     url: "https://{{inventory_hostname}}/{{ VRAuri }}"
     method: POST
-    body: "{{ lookup('file','{{ role_path }}/files/vra_ha_pair.json') }}"
+    body: "{{ lookup('file','{{ role_path }}/files/vra_ha_pair_f5Tenant.json') }}"
     headers:
       # Accept: "application/json"
       Content-Type: "application/json"
