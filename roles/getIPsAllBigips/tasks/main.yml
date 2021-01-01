@@ -3,12 +3,12 @@
 
 - include_tasks: build_provider.yaml
   tags:
-    - getIPsAllBigip
+    - getIPsAllBigips
 
 - include_tasks: getIPsBigip1.yaml
   tags:
-    - getIPsAllBigip
+    - getIPsAllBigips
 
 - include_tasks: getIPsBigip2.yaml
   tags:
-    - getIPsAllBigip
+    - getIPsAllBigips
