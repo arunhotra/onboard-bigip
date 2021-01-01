@@ -28,7 +28,7 @@
 ##############  Template for f5 tenant ###########
 - name: Fill out template and populate JSON for posting to VRA
   template:
-    src: "vra_ha_pair.j2"
+    src: "vra_ha_pair_f5Tenant.j2"
     dest: "{{ role_path}}/files/vra_ha_pair_f5Tenant.json"
 
 - name: Build the Vra uri
