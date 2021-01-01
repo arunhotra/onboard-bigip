@@ -1,0 +1,11 @@
+
+---
+
+- include_tasks: build_provider.yaml
+  tags:
+    - getIPsAllBigip
+
+- include_tasks: getIPsAllBigip.yaml
+  tags:
+    - getIPsAllBigip
+
