@@ -5,7 +5,10 @@
   tags:
     - getIPsAllBigip
 
-- include_tasks: getIPsAllBigip.yaml
+- include_tasks: getIPsBigip1.yaml
   tags:
     - getIPsAllBigip
 
+- include_tasks: getIPsBigip2.yaml
+  tags:
+    - getIPsAllBigip
