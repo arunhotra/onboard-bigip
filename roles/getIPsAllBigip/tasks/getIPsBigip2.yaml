@@ -4,7 +4,7 @@
     set_fact:
       bigip2_mgmtIP: "{{ lookup('nios_next_ip', bigipSubnets.mgmtSubnet, provider=nios_provider)[0] }}"
 
-  - name: Configure an IPv4 host record for BIG-IP2
+  - name: Configure an management IPv4 host record for BIG-IP2
     nios_host_record:
       name: "{{ bigip2_hostname }}-mgmt.example1.com"
       ipv4addrs:
@@ -17,7 +17,7 @@
     set_fact:
       bigip2_extIP: "{{ lookup('nios_next_ip', bigipSubnets.externalSubnet, provider=nios_provider)[0] }}"
 
-  - name: Configure an IPv4 host record for BIG-IP1
+  - name: Configure an external IPv4 host record for BIG-IP1
     nios_host_record:
       name: "{{ bigip2_hostname }}-ext.example1.com"
       ipv4addrs:
@@ -30,7 +30,7 @@
     set_fact:
       bigip2_extFloatIP: "{{ lookup('nios_next_ip', bigipSubnets.externalSubnet, provider=nios_provider)[0] }}"
 
-  - name: Configure an IPv4 host record for BIG-IP1
+  - name: Configure an external float IPv4 host record for BIG-IP1
     nios_host_record:
       name: "{{ bigip2_hostname }}-extFloat.example1.com"
       ipv4addrs:
@@ -43,7 +43,7 @@
     set_fact:
       bigip2_redIP: "{{ lookup('nios_next_ip', bigipSubnets.redSubnet, provider=nios_provider)[0] }}"
 
-  - name: Configure an IPv4 host record for BIG-IP1
+  - name: Configure an red IPv4 host record for BIG-IP1
     nios_host_record:
       name: "{{ bigip2_hostname }}-red.example1.com"
       ipv4addrs:
@@ -56,7 +56,7 @@
     set_fact:
       bigip2_redFloatIP: "{{ lookup('nios_next_ip', bigipSubnets.redSubnet, provider=nios_provider)[0] }}"
 
-  - name: Configure an IPv4 host record for BIG-IP1
+  - name: Configure an red Float IPv4 host record for BIG-IP1
     nios_host_record:
       name: "{{ bigip2_hostname }}-redFloat.example1.com"
       ipv4addrs:
@@ -69,7 +69,7 @@
     set_fact:
       bigip2_haIP: "{{ lookup('nios_next_ip', bigipSubnets.haSubnet, provider=nios_provider)[0] }}"
 
-  - name: Configure an IPv4 host record for BIG-IP1
+  - name: Configure an HA IPv4 host record for BIG-IP1
     nios_host_record:
       name: "{{ bigip2_hostname }}-ha.example1.com"
       ipv4addrs:
