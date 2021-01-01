@@ -1,34 +1,30 @@
 ---
 
 
-  - name: Get a managment network IP
+  - name: Get a managment network IP for bigip1
     set_fact:
       bigip1_mgmtIP: "{{ lookup('nios_next_ip', '10.254.29.96/27', provider=nios_provider)[0] }}"
 
   - name: Configure an IPv4 host record for BIG-IP1
-    nios_fixed_address:
+    nios_host_record:
       name: "{{ bigip1_hostname }}-mgmt.example1.com"
-      ipaddr: "{{ bigip1_mgmtIP }}"
-      mac: "{{ '52:54:10' | random_mac }}"
-      network: 10.254.29.96/27
-      network_view: default
-      #comment: get a mgmt from mgmt IP range
+      ipv4addrs:
+        - address: "{{ bigip1_mgmtIP }}"
       state: present
+      view: default
       provider: "{{ nios_provider }}"
 
-  - name: Get a managment network IP
+  - name: Get a managment network IP for bigip2
     set_fact:
       bigip2_mgmtIP: "{{ lookup('nios_next_ip', '10.254.29.96/27', provider=nios_provider)[0] }}"
 
   - name: Configure an IPv4 host record for BIG-IP2
-    nios_fixed_address:
+    nios_host_record:
       name: "{{ bigip2_hostname }}-mgmt.example1.com"
-      ipaddr: "{{ bigip2_mgmtIP }}"
-      mac: "{{ '52:54:20' | random_mac }}"
-      network: 10.254.29.96/27
-      network_view: default
-      #comment: get a mgmt from mgmt IP range
+      ipv4addrs:
+        - address: "{{ bigip2_mgmtIP }}"
       state: present
+      view: default
       provider: "{{ nios_provider }}"
 
   - name: Share these variables across playbooks
