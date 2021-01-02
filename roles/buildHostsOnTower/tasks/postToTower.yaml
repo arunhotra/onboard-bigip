@@ -19,7 +19,7 @@
     headers:
       Content-Type: "application/json"
     #return_content: yes
-    user: "{{ tower_username ]}"
+    user: "{{ tower_username }}"
     password: "{{ tower_password }}"
     body_format: json
     status_code: [201]
@@ -45,7 +45,7 @@
     headers:
       Content-Type: "application/json"
     #return_content: yes
-    user: "{{ tower_username ]}"
+    user: "{{ tower_username }}"
     password: "{{ tower_password }}"
     body_format: json
     status_code: [201]
