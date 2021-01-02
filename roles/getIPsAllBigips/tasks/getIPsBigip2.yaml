@@ -78,6 +78,8 @@
       view: default
       provider: "{{ nios_provider }}"
 
-
+  - name: set bigip2_ha_status
+    set_fact:
+      bigip2_ha_status: "False"
         
 

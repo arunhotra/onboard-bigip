@@ -77,3 +77,7 @@
       state: present
       view: default
       provider: "{{ nios_provider }}"
+
+  - name: set bigip1_ha_status
+    set_fact:
+      bigip1_ha_status: "True"
