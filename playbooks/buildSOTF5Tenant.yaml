@@ -3,7 +3,7 @@
 - name: Get IP addresses from IPAM, add hosts to Tower, push to repo
   hosts: ipam
   connection: local
-  gather_facts: no
+  gather_facts: yes
 
   
   roles:
