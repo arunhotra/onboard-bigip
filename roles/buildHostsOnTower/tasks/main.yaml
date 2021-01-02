@@ -7,6 +7,6 @@
   tags:
     - buildHostsOnTower
 
-- include_tasks: setHostToGroupTower.yaml
-  tags:
-    - buildHostsOnTower
+# - include_tasks: setHostToGroupTower.yaml
+#   tags:
+#     - buildHostsOnTower
