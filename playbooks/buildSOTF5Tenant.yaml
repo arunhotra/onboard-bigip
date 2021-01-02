@@ -1,0 +1,13 @@
+---
+
+- name: Get IP addresses from IPAM
+  hosts: ipam
+  connection: local
+  gather_facts: no
+
+  
+  roles:
+    - manage-secret
+    - getIPsAllBigips
+    - buildHostsOnTower
+
