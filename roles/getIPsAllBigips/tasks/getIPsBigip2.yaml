@@ -80,6 +80,6 @@
 
   - name: set bigip2_ha_status
     set_fact:
-      bigip2_ha_status: "False"
+      bigip2_ha_status: "\"False\""
         
 
