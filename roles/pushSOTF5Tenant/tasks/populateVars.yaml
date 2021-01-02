@@ -15,6 +15,11 @@
           path: "{{ role_path }}/tmp/repos"
           state: absent
         when: foundFiles.matched > 0
+      
+      - name: Create the tmp directory
+        file:
+          path: "{{role_path}}/tmp/repos"
+          state: directory
 
       - git:
           #repo: git@github.com:arunhotra/infra-repo.git
