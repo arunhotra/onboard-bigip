@@ -1,4 +1,12 @@
 
-- include_tasks: postToTower.yaml
+- include_tasks: postGroupToTower.yaml
+  tags:
+    - buildHostsOnTower
+
+- include_tasks: postHostsToTower.yaml
+  tags:
+    - buildHostsOnTower
+
+- include_tasks: setHostToGroupTower.yaml
   tags:
     - buildHostsOnTower
