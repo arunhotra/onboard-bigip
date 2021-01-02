@@ -13,6 +13,9 @@ bigiq_user: admin
 bigip_password: "{{ vault_bigip_password }}"
 lic_pool: F5-BIG-VE-BT-1G-V16-LIC
 
+tower_username: admin
+tower_password: "{{vault_tower_password }}"
+
 #########################################################
 ####  When using the SovLabs plugin use this section ####
 ####   This is the vsphere.local tenant information  ####
