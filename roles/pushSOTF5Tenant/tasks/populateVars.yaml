@@ -38,6 +38,6 @@
   - name: Upload the files to the repository
     shell: git config --global user.name "arunganti" ; git config --global user.email "a.ganti@f5.com" ; git add . ; git commit -m "onboarded ha pair" ; git push origin master
     args:
-      chdir: "{{role_path}}/tmp/repos/infra-repo"
+      chdir: "{{role_path}}/tmp/repos/"
     run_once: true
 
