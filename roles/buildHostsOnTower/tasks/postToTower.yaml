@@ -13,7 +13,7 @@
 
 - name: REST call to tower to add bigip1 as a host
   uri:
-    url: "https://{{inventory_hostname}}/api/v2/inventories/2/hosts/"
+    url: "https://tower.jpmclab.local/api/v2/inventories/2/hosts/"
     method: POST
     body: "{{ lookup('file','{{ role_path }}/files/bigip1TowerHost.json') }}"
     headers:
@@ -39,7 +39,7 @@
 
 - name: REST call to tower to add bigip2 as a host
   uri:
-    url: "https://{{inventory_hostname}}/api/v2/inventories/2/hosts/"
+    url: "https://tower.jpmclab.local/api/v2/inventories/2/hosts/"
     method: POST
     body: "{{ lookup('file','{{ role_path }}/files/bigip2TowerHost.json') }}"
     headers:
