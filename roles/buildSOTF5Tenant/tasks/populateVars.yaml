@@ -17,8 +17,9 @@
         when: foundFiles.matched > 0
 
       - git:
-          repo: git@github.com:arunhotra/infra-repo.git
+          repo: 'https://github.com/arunhotra/infra-repo.git'
           dest: "{{role_path}}/tmp/repos"
+          force: "yes"
           accept_hostkey: true
     run_once: true
 
