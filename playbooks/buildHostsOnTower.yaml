@@ -1,0 +1,9 @@
+---
+- name: Add hosts to Ansible Tower for future plays
+  hosts: tower
+  connection: local
+  gather_facts: yes
+
+  roles:
+    - manage-secret
+    - buildHostsOnTower
