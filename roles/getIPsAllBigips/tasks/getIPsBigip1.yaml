@@ -77,15 +77,3 @@
       state: present
       view: default
       provider: "{{ nios_provider }}"
-
-  - name: Share these variables across playbooks
-    set_stats:
-      data:
-        bigip1_hostname: "{{ bigip1_hostname }}"
-        bigip1_mgmtIP: "{{ bigip1_mgmtIP }}"
-        bigip1_extIP: "{{ bigip1_extIP }}"
-        bigip1_extFloatIP: "{{ bigip1_extFloatIP }}"
-        bigip1_redIP: "{{ bigip1_redIP }}"
-        bigip1_redFloatIP: "{{ bigip1_redFloatIP }}"
-        bigip1_haIP: "{{ bigip1_haIP }}"
-        version: "{{ version }}"

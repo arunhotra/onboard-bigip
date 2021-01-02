@@ -12,3 +12,7 @@
 - include_tasks: getIPsBigip2.yaml
   tags:
     - getIPsAllBigips
+
+- include_tasks: shareVariables.yaml
+  tags:
+    - getIPsAllBigips

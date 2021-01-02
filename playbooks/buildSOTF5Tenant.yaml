@@ -1,6 +1,6 @@
 ---
 
-- name: Get IP addresses from IPAM
+- name: Get IP addresses from IPAM, add hosts to Tower, push to repo
   hosts: ipam
   connection: local
   gather_facts: no
@@ -10,4 +10,5 @@
     - manage-secret
     - getIPsAllBigips
     - buildHostsOnTower
+    #- buildSOTF5Tenant
 
