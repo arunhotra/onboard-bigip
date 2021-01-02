@@ -10,5 +10,5 @@
     - manage-secret
     - getIPsAllBigips
     - buildHostsOnTower
-    #- buildSOTF5Tenant
+    - buildSOTF5Tenant
 
