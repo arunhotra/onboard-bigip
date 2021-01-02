@@ -18,7 +18,6 @@
     body: "{{ lookup('file','{{ role_path }}/files/bigip1TowerHost.json') }}"
     headers:
       Content-Type: "application/json"
-      Authorization: "Bearer {{vra_token}}"
     #return_content: yes
     user: "{{ tower_username ]}"
     password: "{{ tower_password }}"
@@ -45,7 +44,6 @@
     body: "{{ lookup('file','{{ role_path }}/files/bigip2TowerHost.json') }}"
     headers:
       Content-Type: "application/json"
-      Authorization: "Bearer {{vra_token}}"
     #return_content: yes
     user: "{{ tower_username ]}"
     password: "{{ tower_password }}"
