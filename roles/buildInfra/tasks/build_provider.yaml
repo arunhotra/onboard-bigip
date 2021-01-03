@@ -3,7 +3,7 @@
   - name: Setup provider
     set_fact:
       provider:
-        server: "{{inventory_hostname.VirtualMachine_Network0_Address}}"
+        server: "{{VirtualMachine_Network0_Address}}"
         user: "{{bigip_username}}"
         password: "{{bigip_password}}"
         server_port: "{{bigip_port}}"
