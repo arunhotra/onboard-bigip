@@ -6,7 +6,7 @@
 
   - name: Configure an management IPv4 host record for BIG-IP2
     nios_host_record:
-      name: "{{ bigip2_hostname }}_{{ version }}.example1.com"
+      name: "{{ bigip2_hostname }}-{{ version }}.example1.com"
       ipv4addrs:
         - address: "{{ bigip2_mgmtIP }}"
       state: present
