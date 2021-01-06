@@ -19,7 +19,7 @@
 
   - name: Configure an external IPv4 host record for BIG-IP1
     nios_host_record:
-      name: "{{ bigip2_hostname }}-ext.example1.com"
+      name: "{{ bigip2_hostname }}-ext-{{ version }}.example1.com"
       ipv4addrs:
         - address: "{{ bigip2_extIP }}"
       state: present
@@ -32,7 +32,7 @@
 
   - name: Configure an external float IPv4 host record for BIG-IP1
     nios_host_record:
-      name: "{{ bigip2_hostname }}-extFloat.example1.com"
+      name: "{{ bigip2_hostname }}-extFloat-{{ version }}.example1.com"
       ipv4addrs:
         - address: "{{ bigip2_extFloatIP }}"
       state: present
@@ -45,7 +45,7 @@
 
   - name: Configure an red IPv4 host record for BIG-IP1
     nios_host_record:
-      name: "{{ bigip2_hostname }}-red.example1.com"
+      name: "{{ bigip2_hostname }}-red-{{ version }}.example1.com"
       ipv4addrs:
         - address: "{{ bigip2_redIP }}"
       state: present
@@ -58,7 +58,7 @@
 
   - name: Configure an red Float IPv4 host record for BIG-IP1
     nios_host_record:
-      name: "{{ bigip2_hostname }}-redFloat.example1.com"
+      name: "{{ bigip2_hostname }}-redFloat-{{ version }}.example1.com"
       ipv4addrs:
         - address: "{{ bigip2_redFloatIP }}"
       state: present
@@ -71,7 +71,7 @@
 
   - name: Configure an HA IPv4 host record for BIG-IP1
     nios_host_record:
-      name: "{{ bigip2_hostname }}-ha.example1.com"
+      name: "{{ bigip2_hostname }}-ha-{{ version }}.example1.com"
       ipv4addrs:
         - address: "{{ bigip2_haIP }}"
       state: present
