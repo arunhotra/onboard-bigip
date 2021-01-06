@@ -23,8 +23,16 @@
             {
                 "servicePort": {{item.value.server_port}},
                 "serverAddresses": [
-                    "{{ item.value.app_locations.pool_members| join('", "') }}"
-                ]
+                    "{{ item.value.app_locations.pool_members[0].ip}}"
+                ],
+                "adminState": "{{ item.value.app_locations.pool_members[0].state}}"
+            },
+            {
+                "servicePort": {{item.value.server_port}},
+                "serverAddresses": [
+                    "{{ item.value.app_locations.pool_members[1].ip}}"
+                ],
+                "adminState": "{{ item.value.app_locations.pool_members[1].state }}"
             }
         ]
     }
