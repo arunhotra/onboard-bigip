@@ -23,7 +23,7 @@
             {
                 "servicePort": {{item.value.server_port}},
                 "serverAddresses": [
-                    "{{ item.value.app_locations.pool_members.ip| join('", "') }}"
+                    "{{ item.value.app_locations.pool_members| join('", "') }}"
                 ]
             }
         ]
