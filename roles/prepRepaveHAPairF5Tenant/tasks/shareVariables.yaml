@@ -7,3 +7,4 @@
       bigip1_mgmtIP: "{{ bigip1_mgmtIP }}"
       bigip2_hostname: "{{ bigip2_hostname }}"
       bigip2_mgmtIP: "{{ bigip2_mgmtIP }}"
+  run_once: true
