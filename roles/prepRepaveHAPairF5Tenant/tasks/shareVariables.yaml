@@ -1,0 +1,9 @@
+---
+
+- name: Share these variables across playbooks
+  set_stats:
+    data:
+      bigip1_hostname: "{{ bigip1_hostname }}"
+      bigip1_mgmtIP: "{{ bigip1_mgmtIP }}"
+      bigip2_hostname: "{{ bigip2_hostname }}"
+      bigip2_mgmtIP: "{{ bigip2_mgmtIP }}"
