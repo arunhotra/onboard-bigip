@@ -16,5 +16,5 @@
 - name: set MgmtIP for bigip2
   set_fact:
       bigip2_mgmtIP: "{{ lookup('dig', inventory_hostname)}}"
-  when: "'bigip1' in inventory_hostname"
+  when: "'bigip2' in inventory_hostname"
 
