@@ -3,10 +3,10 @@
 - name: set MgmtIP for bigip1
   set_fact:
       bigip1_mgmtIP: "{{ lookup('dig', inventory_hostname)}}"
-  when: inventory_hostname is match("bigip1*")
+  when: "'bigip1' in inventory_hostname"
 
 - name: set MgmtIP for bigip2
   set_fact:
       bigip2_mgmtIP: "{{ lookup('dig', inventory_hostname)}}"
-  when: inventory_hostname is match("bigip2*")
+  when: "'bigip1' in inventory_hostname"
 
