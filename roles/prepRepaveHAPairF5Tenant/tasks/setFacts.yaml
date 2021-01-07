@@ -1,17 +1,19 @@
 ---
 
-- name: initializing vars
+- name: initializing var for bigip1
   set_fact:
       bigip1_mgmtIP: ""
-
-- name: initializing vars
-  set_fact:
-      bigip2_mgmtIP: ""
+  when: "'bigip1' in inventory_hostname"
 
 - name: set MgmtIP for bigip1
   set_fact:
       bigip1_mgmtIP: "{{ lookup('dig', inventory_hostname)}}"
   when: "'bigip1' in inventory_hostname"
+
+- name: initializing var for bigip2
+  set_fact:
+      bigip2_mgmtIP: ""
+  when: "'bigip2' in inventory_hostname"
 
 - name: set MgmtIP for bigip2
   set_fact:
