@@ -1,5 +1,13 @@
 ---
 
+- name: initializing vars
+  set_fact:
+      bigip1_mgmtIP: ""
+
+- name: initializing vars
+  set_fact:
+      bigip2_mgmtIP: ""
+
 - name: set MgmtIP for bigip1
   set_fact:
       bigip1_mgmtIP: "{{ lookup('dig', inventory_hostname)}}"
