@@ -3,6 +3,6 @@
   tags:
     - setFactsForBigips
 
-- include_tasks: shareVariables.yaml
-  tags:
-    - setFactsForBigips
+# - include_tasks: shareVariables.yaml
+#   tags:
+#     - setFactsForBigips
