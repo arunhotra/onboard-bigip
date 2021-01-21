@@ -7,7 +7,8 @@
 
     - name: clone the repo with apps knowledge
       git:
-        repo: git@github.com:arunhotra/app-repo.git
+        #repo: git@github.com:arunhotra/app-repo.git
+        repo: https://github.com/LeonardosGitHub/app_repo_via_post.git
         dest: "{{ role_path }}/tmp/app-inputs"
         accept_hostkey: true
   run_once: true
