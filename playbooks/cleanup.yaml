@@ -1,8 +1,0 @@
----
-- name: Cleanup dir
-  hosts: localhost
-  connection: local
-  gather_facts: no
-
-  roles:
-    - cleanup

@@ -1,8 +1,0 @@
----
-- name: BIG IP App onboarding
-  hosts: "{{bigip1_hostname}}_{{bigip2_hostname}}_{{ version }}"
-  connection: local
-  gather_facts: no
-
-  roles:
-    - buildApp
