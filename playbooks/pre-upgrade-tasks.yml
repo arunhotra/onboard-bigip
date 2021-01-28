@@ -1,0 +1,25 @@
+---
+
+- name: Perform the tasks prior to a BIG-IP upgrade
+  hosts: "{{bigip1_hostname}}_{{bigip2_hostname}}_{{ version }}"
+  connection: local
+  gather_facts: no
+
+  # collections:
+  #   - f5networks.f5_modules
+    
+
+  roles:
+
+    - { role: manage-secret, tags: ['always'] }
+
+
+    - { role: init, tags: ['always'] }
+    # - { role: pre-upgrade, tags: ['pre-upgrade'] }
+
+    # - { role: "init", when: (upgrade_success == true | bool), tags: ['always'] } 
+    # - { role: "pre-upgrade", when: (upgrade_success == true | bool), tags: ['pre-upgrade'] } 
+
+
+
+
